@@ -1,0 +1,41 @@
+{
+  "name": "binding-wrong-owner",
+  "description": "claims name O as issuer but the signature is X's (the hijack case)",
+  "spec": "docs/spec/binding-v1.md",
+  "now": "2026-10-26T12:00:00Z",
+  "forged": true,
+  "inputs": {
+    "binding": {
+      "owner": "did:key:z6Mkt82jrdEK671CLqjzqB4FXbJ7X6ySJAVtTyTJatXkobV4",
+      "agent": {
+        "key_id": "did:key:z6MkkWEvcT8N7oiPCqvYFWq9u7biQnaN8dWT1v5pFFf3YVTx"
+      },
+      "mandate": {
+        "hash": "sha256:e308602b889c47b0cf23c2680dc35ca1cefa20143b4dd03c874e7233d69fdaaa",
+        "issuer": "did:web:flexyield.example",
+        "version": "1"
+      },
+      "valid_from": "2026-10-26T11:59:00Z",
+      "valid_until": "2026-10-27T12:00:00Z",
+      "status": {
+        "url": "https://status.flexhold.example/lists/1.jws",
+        "index": 7,
+        "issuer": "did:key:z6Mkma8F3TmFFvkf4qDMDqf8Wks4KnBiGfpXiAgKNECMkTHZ"
+      },
+      "consent_ref": "consent:2026-10-26:0001",
+      "identity_refs": []
+    },
+    "signing_key": "owner",
+    "jti": "urn:uuid:00000000-0000-4000-8000-856a7ababdee",
+    "iat": "2026-10-26T11:59:00Z",
+    "nonce": "9bc3c3c90800f0c6f3e3ad68c3d10b7e"
+  },
+  "verify": {
+    "status_list": "status-list-valid"
+  },
+  "expected": {
+    "ok": false,
+    "reason": "signature_invalid",
+    "jws": "eyJhbGciOiJFZERTQSIsInR5cCI6InZjK2p3dCIsImtpZCI6ImRpZDprZXk6ejZNa3M5ajQzazJNWlZvQ2JTS3Jkc1UxZkR6S0tTSG15SmlTbTRSRW1iU2s1R3hQI3o2TWtzOWo0M2syTVpWb0NiU0tyZHNVMWZEektLU0hteUppU200UkVtYlNrNUd4UCJ9.eyJAY29udGV4dCI6WyJodHRwczovL3d3dy53My5vcmcvbnMvY3JlZGVudGlhbHMvdjIiLCJodHRwczovL3czaWQub3JnL2FnZW50LXBhc3Nwb3J0L2JpbmRpbmcvdjEiXSwidHlwZSI6WyJWZXJpZmlhYmxlQ3JlZGVudGlhbCIsIkZsZXhIb2xkQmluZGluZyIsIkFnZW50QmluZGluZyJdLCJpc3N1ZXIiOiJkaWQ6a2V5Ono2TWt0ODJqcmRFSzY3MUNMcWp6cUI0RlhiSjdYNnlTSkFWdFR5VEphdFhrb2JWNCIsInZhbGlkRnJvbSI6IjIwMjYtMTAtMjZUMTE6NTk6MDBaIiwidmFsaWRVbnRpbCI6IjIwMjYtMTAtMjdUMTI6MDA6MDBaIiwiY3JlZGVudGlhbFN1YmplY3QiOnsiaWQiOiJkaWQ6a2V5Ono2TWtrV0V2Y1Q4TjdvaVBDcXZZRldxOXU3YmlRbmFOOGRXVDF2NXBGRmYzWVZUeCIsImFnZW50Ijp7fSwibWFuZGF0ZSI6eyJoYXNoIjoic2hhMjU2OmUzMDg2MDJiODg5YzQ3YjBjZjIzYzI2ODBkYzM1Y2ExY2VmYTIwMTQzYjRkZDAzYzg3NGU3MjMzZDY5ZmRhYWEiLCJpc3N1ZXIiOiJkaWQ6d2ViOmZsZXh5aWVsZC5leGFtcGxlIiwidmVyc2lvbiI6IjEifSwiY29uc2VudF9yZWYiOiJjb25zZW50OjIwMjYtMTAtMjY6MDAwMSIsImlkZW50aXR5X3JlZnMiOltdfSwiY3JlZGVudGlhbFN0YXR1cyI6eyJ0eXBlIjoiQml0c3RyaW5nU3RhdHVzTGlzdEVudHJ5Iiwic3RhdHVzUHVycG9zZSI6InJldm9jYXRpb24iLCJzdGF0dXNMaXN0SW5kZXgiOiI3Iiwic3RhdHVzTGlzdENyZWRlbnRpYWwiOiJodHRwczovL3N0YXR1cy5mbGV4aG9sZC5leGFtcGxlL2xpc3RzLzEuandzIiwiaXNzdWVyIjoiZGlkOmtleTp6Nk1rbWE4RjNUbUZGdmtmNHFETURxZjhXa3M0S25CaUdmcFhpQWdLTkVDTWtUSFoifSwiaWQiOiJ1cm46dXVpZDowMDAwMDAwMC0wMDAwLTQwMDAtODAwMC04NTZhN2FiYWJkZWUiLCJpc3MiOiJkaWQ6a2V5Ono2TWt0ODJqcmRFSzY3MUNMcWp6cUI0RlhiSjdYNnlTSkFWdFR5VEphdFhrb2JWNCIsInN1YiI6ImRpZDprZXk6ejZNa2tXRXZjVDhON29pUENxdllGV3E5dTdiaVFuYU44ZFdUMXY1cEZGZjNZVlR4IiwibmJmIjoxNzkzMDE1OTQwLCJleHAiOjE3OTMxMDI0MDAsImlhdCI6MTc5MzAxNTk0MCwianRpIjoidXJuOnV1aWQ6MDAwMDAwMDAtMDAwMC00MDAwLTgwMDAtODU2YTdhYmFiZGVlIiwibm9uY2UiOiI5YmMzYzNjOTA4MDBmMGM2ZjNlM2FkNjhjM2QxMGI3ZSJ9.laDQvKnM8jKWcNDotaYpuJYdDw476bxaj-T56WgH1aq-gGvk269vlLrplXGxGb_yW8oXx8qF6eQlf0pjkRUGBA"
+  }
+}

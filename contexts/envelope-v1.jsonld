@@ -1,0 +1,22 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "@protected": true,
+    "ap": "https://w3id.org/agent-passport/vocab#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "AgentPassportEnvelope": "ap:AgentPassportEnvelope",
+    "AgentMandate": "ap:AgentMandate",
+    "AgentRecord": "ap:AgentRecord",
+    "AgentBinding": "ap:AgentBinding",
+    "OwnerIdentity": "ap:OwnerIdentity",
+
+    "version": "ap:version",
+    "roles": { "@id": "ap:roles", "@type": "@json" },
+    "policy_url": { "@id": "ap:policyUrl", "@type": "@id" },
+    "anchors": { "@id": "ap:anchors", "@type": "@json" },
+    "presented_at": { "@id": "ap:presentedAt", "@type": "xsd:dateTime" },
+    "aud": "ap:audience",
+    "nonce": "ap:nonce"
+  }
+}

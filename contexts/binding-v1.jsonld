@@ -1,0 +1,15 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "@protected": true,
+    "ap": "https://w3id.org/agent-passport/vocab#",
+
+    "FlexHoldBinding": "ap:FlexHoldBinding",
+    "AgentBinding": "ap:AgentBinding",
+
+    "agent": { "@id": "ap:agent", "@type": "@json" },
+    "mandate": { "@id": "ap:mandate", "@type": "@json" },
+    "consent_ref": "ap:consentRef",
+    "identity_refs": { "@id": "ap:identityRefs", "@type": "@json" }
+  }
+}

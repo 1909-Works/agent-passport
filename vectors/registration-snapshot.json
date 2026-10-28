@@ -1,0 +1,30 @@
+{
+  "note": "stands in for any signed ERC-8004 registration snapshot; the snapshot signature check is the caller's",
+  "registrations": [
+    {
+      "chain_id": 1,
+      "registry": "0xabababababababababababababababababababab",
+      "agent_id": "42",
+      "owner": "did:key:z6Mkt82jrdEK671CLqjzqB4FXbJ7X6ySJAVtTyTJatXkobV4"
+    },
+    {
+      "chain_id": 1,
+      "registry": "0xabababababababababababababababababababab",
+      "agent_id": "43",
+      "owner": "did:key:z6Mks9j43k2MZVoCbSKrdsU1fDzKKSHmyJiSm4REmbSk5GxP"
+    },
+    {
+      "chain_id": 1,
+      "registry": "0xabababababababababababababababababababab",
+      "agent_id": "44",
+      "owner": "did:pkh:eip155:1:0x43bAD98cb1436bB70e03110Bfe96e588c4e4116e"
+    },
+    {
+      "chain_id": 8453,
+      "registry": "0xabababababababababababababababababababab",
+      "agent_id": "999999001",
+      "owner": "did:key:z6Mkt82jrdEK671CLqjzqB4FXbJ7X6ySJAVtTyTJatXkobV4",
+      "note": "the record vectors' synthetic agent, registered to O for the example envelope"
+    }
+  ]
+}

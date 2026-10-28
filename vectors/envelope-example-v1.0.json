@@ -1,0 +1,458 @@
+{
+  "name": "envelope-example-v1.0",
+  "description": "One consistent Agent Passport Envelope (spec v1.0) from the valid vectors: FlexYield's indicative mandate block (as delivered), FlexTrust's indicative record block (full tier, as delivered) and FlexHold's binding over that mandate for agent K with the record's ERC-8004 id. Built by `flexhold present` from a store holding the three; a door verifier should report every block ok, the cross-checks ok and `bound_stale` as the one advisory (record says bound:false, a live binding is presented).",
+  "spec": "docs/bridge/ENVELOPE-SPEC-v1.0.md",
+  "now": "2026-10-27T10:30:00Z",
+  "inputs": {
+    "holder": "did:key:z6MkkWEvcT8N7oiPCqvYFWq9u7biQnaN8dWT1v5pFFf3YVTx",
+    "mandate": "mandate-valid",
+    "record": "record-indicative-valid",
+    "binding": {
+      "binding": {
+        "owner": "did:key:z6Mkt82jrdEK671CLqjzqB4FXbJ7X6ySJAVtTyTJatXkobV4",
+        "agent": {
+          "key_id": "did:key:z6MkkWEvcT8N7oiPCqvYFWq9u7biQnaN8dWT1v5pFFf3YVTx",
+          "erc8004": {
+            "chain_id": 8453,
+            "registry": "0xabababababababababababababababababababab",
+            "agent_id": "999999001"
+          }
+        },
+        "mandate": {
+          "hash": "sha256:9b27482c1a9d64c9bed8538e9df715445e2413e076bbc2d0c866ec9e00244936",
+          "issuer": "did:web:flexyield.io",
+          "version": "1"
+        },
+        "valid_from": "2026-10-27T10:00:00Z",
+        "valid_until": "2026-10-28T10:00:00Z",
+        "status": {
+          "url": "https://status.flexhold.example/lists/1.jws",
+          "index": 7,
+          "issuer": "did:key:z6Mkma8F3TmFFvkf4qDMDqf8Wks4KnBiGfpXiAgKNECMkTHZ"
+        },
+        "consent_ref": "consent:2026-10-26:0001",
+        "identity_refs": []
+      },
+      "signing_key": "owner",
+      "jti": "urn:uuid:00000000-0000-4000-8000-56c46a31cc5a",
+      "iat": "2026-10-27T10:29:00Z",
+      "nonce": "76b30c6b7f4eada07c3c25e52b14dedd"
+    },
+    "policy_url": "https://door.example/policy",
+    "nonce": "d03c94ce98548dd680d79b0081cdb4bb"
+  },
+  "verify": {
+    "mandate": {
+      "jwk_directory": {
+        "did:web:flexyield.io#mandate-indicative-2026-10": {
+          "x": "CHFqVPPTx1FBxdu1oDVL8Exwc_a4tjg1VSwRX0l5eSQ",
+          "valid_from": "2026-10-27",
+          "retired_at": null,
+          "compromised_at": null
+        }
+      }
+    },
+    "record": {
+      "key_directory": {
+        "indicative-test-key": {
+          "address": "0xE5B5595C2f11306CD43D725CE8b98707a139BbBd",
+          "valid_from": "2026-10-26",
+          "retired_at": null,
+          "compromised_at": null
+        }
+      },
+      "commitments": {
+        "2026-10-26": {
+          "merkle_root": "76d15ac5c145edb8f9736eea7a8ea57a72245209ff891caf9a96cb19d5170109",
+          "leaf_count": 10657,
+          "methodology_version": "v1"
+        }
+      }
+    },
+    "binding": {
+      "status_list": "status-list-valid",
+      "registration": "registration-snapshot",
+      "mandate_bytes": "the compact JWS in verifiableCredential[roles.mandate].id after data:application/vc+jwt,",
+      "mandate_issuer": "did:web:flexyield.io",
+      "request_key_id": "did:key:z6MkkWEvcT8N7oiPCqvYFWq9u7biQnaN8dWT1v5pFFf3YVTx"
+    }
+  },
+  "expected": {
+    "envelope": {
+      "@context": [
+        "https://www.w3.org/ns/credentials/v2",
+        "https://w3id.org/agent-passport/envelope/v1"
+      ],
+      "type": [
+        "VerifiablePresentation",
+        "AgentPassportEnvelope"
+      ],
+      "version": "envelope-v1.0",
+      "holder": "did:key:z6MkkWEvcT8N7oiPCqvYFWq9u7biQnaN8dWT1v5pFFf3YVTx",
+      "roles": {
+        "mandate": 0,
+        "record": 1,
+        "binding": 2,
+        "identity": []
+      },
+      "verifiableCredential": [
+        {
+          "@context": [
+            "https://www.w3.org/ns/credentials/v2"
+          ],
+          "type": [
+            "EnvelopedVerifiableCredential"
+          ],
+          "id": "data:application/vc+jwt,eyJhbGciOiJFZERTQSIsInR5cCI6InZjK2p3dCIsImtpZCI6ImRpZDp3ZWI6ZmxleHlpZWxkLmlvI21hbmRhdGUtaW5kaWNhdGl2ZS0yMDI2LTEwIn0.eyJAY29udGV4dCI6WyJodHRwczovL3d3dy53My5vcmcvbnMvY3JlZGVudGlhbHMvdjIiLCJodHRwczovL2ZsZXh5aWVsZC5pby9zcGVjL21hbmRhdGUvdjEiXSwidHlwZSI6WyJWZXJpZmlhYmxlQ3JlZGVudGlhbCIsIkZsZXhZaWVsZE1hbmRhdGUiXSwiaXNzdWVyIjp7ImlkIjoiZGlkOndlYjpmbGV4eWllbGQuaW8iLCJuYW1lIjoiRmxleFlpZWxkIn0sInZhbGlkRnJvbSI6IjIwMjYtMTAtMjdUMTA6MDA6MDBaIiwidmFsaWRVbnRpbCI6IjIwMjYtMTEtMjZUMTA6MDA6MDBaIiwidmVyc2lvbiI6Im1hbmRhdGUtdjEiLCJjcmVkZW50aWFsU3ViamVjdCI6eyJpZCI6ImRpZDprZXk6ejZNa2tXRXZjVDhON29pUENxdllGV3E5dTdiaVFuYU44ZFdUMXY1cEZGZjNZVlR4IiwiYWdlbnQiOnsia2V5X2lkIjoiZGlkOmtleTp6Nk1ra1dFdmNUOE43b2lQQ3F2WUZXcTl1N2JpUW5hTjhkV1QxdjVwRkZmM1lWVHgiLCJlcmM4MDA0Ijp7ImNoYWluX2lkIjoxLCJyZWdpc3RyeSI6IjB4YWJhYmFiYWJhYmFiYWJhYmFiYWJhYmFiYWJhYmFiYWJhYmFiYWJhYiIsImFnZW50X2lkIjoiNDIifX0sInByaW5jaXBhbCI6eyJhY2NvdW50IjoiYWNjdF8wMUs4TTNZMElORElDQVRJVkUwMDAwMDAwMCIsImNsYWltIjp7ImtpbmQiOiJtYW5kYXRlIiwiY2xhaW1lZF9hdCI6IjIwMjYtMTAtMjdUMDk6NTg6MDBaIiwiYXNzZXJ0c19vd25lcnNoaXAiOmZhbHNlLCJhc3NlcnRzX2lkZW50aXR5IjpmYWxzZX19LCJtYW5kYXRlIjp7InZlcnNpb24iOiIxIiwiY2FwIjp7ImN1cnJlbmN5IjoiVVNEIiwicGVyaW9kIjoiUDMwRCIsImFtb3VudF9jZW50cyI6NTAwMCwicGVyX2FjdGlvbl9jZW50cyI6MjAwLCJzcGVudF9jZW50cyI6MTI3MH0sImFjdGlvbl90eXBlcyI6WyJycGMucmVhZCIsInJwYy5zaW11bGF0ZSIsInJwYy5zZW5kIiwibWNwLnRvb2wiXSwiYWxsb3dsaXN0Ijp7ImNoYWlucyI6WyJlaXAxNTU6MSIsImVpcDE1NTo4NDUzIiwiZWlwMTU1OjEzNyJdLCJycGNfbWV0aG9kcyI6WyJldGhfYmxvY2tOdW1iZXIiLCJldGhfY2FsbCIsImV0aF9lc3RpbWF0ZUdhcyIsImV0aF9nZXRCYWxhbmNlIiwiZXRoX2dldExvZ3MiLCJldGhfc2VuZFJhd1RyYW5zYWN0aW9uIl0sIm1jcF90b29scyI6WyJmbGV4eWllbGQucnBjIiwiZmxleHlpZWxkLnN0YXRlbWVudCIsImZsZXh5aWVsZC51c2FnZSJdLCJjb250cmFjdHMiOlsiZWlwMTU1Ojg0NTM6MHg4MzM1ODlmY2Q2ZWRiNmUwOGY0YzdjMzJkNGY3MWI1NGJkYTAyOTEzIl19LCJkZW55bGlzdCI6eyJycGNfbWV0aG9kcyI6WyJldGhfc2lnbiIsInBlcnNvbmFsX3NpZ24iXX0sImZlbmNlcyI6eyJyYXRlX3Blcl9taW51dGUiOjEyMCwiZGFpbHlfY2VudHMiOjUwMH0sImtleXMiOlsiZnlrXzAxSzhNM1gwSU5ESUNBVElWRTAwMDAwMDAwMCJdfSwicmVjZWlwdHMiOnsid2luZG93Ijp7ImZyb20iOiIyMDI2LTEwLTIwVDAwOjAwOjAwWiIsInRvIjoiMjAyNi0xMC0yN1QwOTo1NTowMFoifSwiY291bnQiOjE4NDMsImNvc3RfY2VudHMiOjEyNzAsInZlcmRpY3RzIjp7Imluc2lkZSI6MTg0Mywib3V0c2lkZSI6MCwibm9fbWFuZGF0ZSI6MH0sImRpZ2VzdCI6InNoYTI1NjoyYThjMDAyM2I1OWE1NzhkNDI3Y2E1YmFmZWZjNjdkODA0NTgzNWU4MzI0NGIzMjlhNTI4NGM4YjhiNDZmYTA3IiwiZXhwb3J0IjoiaHR0cHM6Ly9mbGV4eWllbGQuaW8vYXBpL3YxL21hbmRhdGVzLzAxSzhNNFEwSU5ESUNBVElWRTAwMDAwMDAwMC9yZWNlaXB0cyIsInNhbXBsZSI6W3siaWQiOiJyY3B0XzAxSzhNM1owU0FNUExFMDAwMDAwMDAwMDAwMSIsImF0IjoiMjAyNi0xMC0yN1QwOTo0MToxMloiLCJhY3Rpb25fdHlwZSI6InJwYy5yZWFkIiwiY2hhaW4iOiJlaXAxNTU6ODQ1MyIsIm1ldGhvZCI6ImV0aF9nZXRMb2dzIiwiY29zdF9jZW50cyI6MSwidmVyZGljdCI6Imluc2lkZSIsInJlcXVlc3Rfc2lnbmF0dXJlIjoicmZjOTQyMTpkaWQ6a2V5Ono2TWtrV0V2Y1Q4TjdvaVBDcXZZRldxOXU3YmlRbmFOOGRXVDF2NXBGRmYzWVZUeCJ9LHsiaWQiOiJyY3B0XzAxSzhNM1owU0FNUExFMDAwMDAwMDAwMDAwMiIsImF0IjoiMjAyNi0xMC0yN1QwOTo1Mjo0MFoiLCJhY3Rpb25fdHlwZSI6Im1jcC50b29sIiwiY2hhaW4iOm51bGwsIm1ldGhvZCI6ImZsZXh5aWVsZC5zdGF0ZW1lbnQiLCJjb3N0X2NlbnRzIjowLCJ2ZXJkaWN0IjoiaW5zaWRlIiwicmVxdWVzdF9zaWduYXR1cmUiOiJyZmM5NDIxOmRpZDprZXk6ejZNa2tXRXZjVDhON29pUENxdllGV3E5dTdiaVFuYU44ZFdUMXY1cEZGZjNZVlR4In1dfX0sImNyZWRlbnRpYWxTdGF0dXMiOnsidHlwZSI6IkZsZXhZaWVsZExpdmVNYW5kYXRlIiwicmVmcmVzaCI6Imh0dHBzOi8vZmxleHlpZWxkLmlvL2FwaS92MS9tYW5kYXRlcy8wMUs4TTRRMElORElDQVRJVkUwMDAwMDAwMDAifSwidGVybXNPZlVzZSI6eyJ0eXBlIjoiRmxleFlpZWxkVGVybXMiLCJ2ZXJzaW9uIjoiMS4wIiwidXJsIjoiaHR0cHM6Ly9mbGV4eWllbGQuaW8vdGVybXMifSwidmVyaWZ5Ijp7ImtleXMiOiJodHRwczovL2ZsZXh5aWVsZC5pby8ud2VsbC1rbm93bi9mbGV4eWllbGQiLCJzcGVjIjoiaHR0cHM6Ly9mbGV4eWllbGQuaW8vc3BlYy9tYW5kYXRlIn0sImlkIjoidXJuOmZsZXh5aWVsZDptYW5kYXRlOjAxSzhNNFEwSU5ESUNBVElWRTAwMDAwMDAwMCIsImp0aSI6InVybjpmbGV4eWllbGQ6bWFuZGF0ZTowMUs4TTRRMElORElDQVRJVkUwMDAwMDAwMDAiLCJpc3MiOiJkaWQ6d2ViOmZsZXh5aWVsZC5pbyIsInN1YiI6ImRpZDprZXk6ejZNa2tXRXZjVDhON29pUENxdllGV3E5dTdiaVFuYU44ZFdUMXY1cEZGZjNZVlR4IiwiaWF0IjoxNzkzMDk1MDgwLCJuYmYiOjE3OTMwOTUyMDAsImV4cCI6MTc5NTY4NzIwMH0.5yXRrKjAkhpLhL-Z8585hK9E3cDlZ4gZfHT0hOJT6Yli2V5ZCk2BN0Fz4UMmBSHcvXsv0YMacfiEnDoTMV0fAg"
+        },
+        {
+          "indicative": true,
+          "note": "Indicative record block (passport-v1) for FlexHold's collector (H2, H-O4): a synthetic agent, signed with an ephemeral test key (indicative-test-key), NOT a FlexTrust attestation key. Shape and field names are the contract; values are illustrative; do not verify against production keys.",
+          "@context": [
+            "https://www.w3.org/ns/credentials/v2",
+            "https://flextrust.io/spec/passport/v1"
+          ],
+          "id": "https://flextrust.io/agents/22286/passport",
+          "type": [
+            "VerifiableCredential",
+            "FlexTrustAgentPassport"
+          ],
+          "issuer": {
+            "id": "did:web:flextrust.io",
+            "name": "FlexTrust"
+          },
+          "validFrom": "2026-10-26T18:12:12Z",
+          "validUntil": "2026-10-27T18:12:12Z",
+          "tier": "full",
+          "version": "passport-v1",
+          "credentialSubject": {
+            "id": "erc8004:8453:999999001",
+            "agent": {
+              "id": 22286,
+              "did": "erc8004:8453:999999001",
+              "name": "Indicative Courier",
+              "first_seen_at": "2026-09-26T18:12:12Z",
+              "status": "active"
+            },
+            "score": {
+              "value": 712,
+              "scale": "0-1000",
+              "view": "exact",
+              "band": "established",
+              "percentile": 100,
+              "confidence_bps": 7800,
+              "computed_at": "2026-10-26T18:12:12Z",
+              "methodology_version": "v1",
+              "inputs_hash": "indicative",
+              "committed": {
+                "day": "2026-10-26",
+                "root": "76d15ac5c145edb8f9736eea7a8ea57a72245209ff891caf9a96cb19d5170109"
+              }
+            },
+            "risk_0_100": {
+              "value": 29,
+              "basis": "derived",
+              "formula": "round((1000 - score) / 10)",
+              "from": "exact score"
+            },
+            "factors": {
+              "settlement_volume": {
+                "weight_bps": 4000,
+                "contribution_points": 320,
+                "evidence_count": 9,
+                "note": null
+              }
+            },
+            "evidence_counts": {
+              "settlements": 0,
+              "feedback": 0,
+              "validations": 0,
+              "attested_receipts": 0
+            },
+            "flags": [
+              "manipulation_pattern"
+            ],
+            "incidents": [
+              {
+                "id": "anomaly-1",
+                "type": "manipulation_pattern",
+                "state": "confirmed",
+                "at": "2026-10-26T18:12:12Z",
+                "reviewed_at": "2026-10-26T18:12:12Z",
+                "mandate": "unknown",
+                "score_effect": "none"
+              }
+            ],
+            "incident_policy": {
+              "exposure": "public-safe: incident types, states and dates — never detector internals, furnisher names or amounts",
+              "mandate": "whether an incident fell inside or outside the agent's mandate is a verdict its platform furnishes; FlexTrust never infers it (unknown until furnished)",
+              "score_effect": "none: no incident changes a score in this version; only outside-mandate incidents and counterparty harm could ever carry weight, and only under a published methodology version"
+            },
+            "control_continuity": {
+              "owner_address": "0x1111111111111111111111111111111111111111",
+              "owner_since": {
+                "observed_at": "2026-10-26T18:12:12Z",
+                "basis": "chain_event",
+                "block": 36500000,
+                "tx_hash": "0xc3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3"
+              },
+              "owner_changes": 1,
+              "owner_history": [
+                {
+                  "from": "0x9999999999999999999999999999999999999999",
+                  "to": "0x1111111111111111111111111111111111111111",
+                  "burn": false,
+                  "block": 36500000,
+                  "tx_hash": "0xc3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3",
+                  "observed_at": "2026-10-26T18:12:12Z"
+                }
+              ],
+              "registrations": [
+                {
+                  "chain": "base",
+                  "chain_id": 8453,
+                  "token_id": "999999001",
+                  "owner_address": "0x1111111111111111111111111111111111111111",
+                  "registered_at_block": 36000000,
+                  "revoked_at": null,
+                  "owner_since": {
+                    "observed_at": "2026-10-26T18:12:12Z",
+                    "basis": "chain_event",
+                    "block": 36500000,
+                    "tx_hash": "0xc3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3"
+                  }
+                }
+              ],
+              "anchors": [
+                {
+                  "kind": "http_key",
+                  "identifier": "ed25519:e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5",
+                  "verified_at": "2026-10-16T18:12:12Z",
+                  "status": "active"
+                }
+              ],
+              "anchor_note": "Key rotation and revocation are recorded once the key directory ships (F9); until then an anchor is listed as proven on its verification date.",
+              "as_of_block": 50276154
+            },
+            "bound": false,
+            "binding_status_url": null,
+            "operator_attested_by": null,
+            "liveness": null,
+            "slots": {
+              "bound": "true once a FlexHold binding for the owner key is present and not revoked (status list)",
+              "operator_attested_by": "an accepted attester (x401, EUDI wallet, KYC read-only) — never the operator's legal identity",
+              "liveness": "0–6 rungs, C2"
+            },
+            "history": [
+              {
+                "date": "2026-10-26",
+                "value": 712,
+                "confidence_bps": 7800
+              }
+            ]
+          },
+          "credentialStatus": {
+            "type": "FlexTrustLivePassport",
+            "refresh": "https://flextrust.io/agents/22286/passport.json"
+          },
+          "termsOfUse": {
+            "type": "FlexTrustTerms",
+            "version": "1.0",
+            "url": "https://flextrust.io/terms"
+          },
+          "verify": {
+            "commitments": "https://flextrust.io/commitments.json",
+            "keys": "https://flextrust.io/.well-known/flextrust",
+            "spec": "https://flextrust.io/spec/passport"
+          },
+          "statement": {
+            "status": "signed",
+            "message": {
+              "subject": "erc8004:8453:999999001",
+              "subjectId": 22286,
+              "tier": "full",
+              "documentDigest": "0x548e48abe884d856f878bfad20d8d6ddd01dd49c3c27b0721d1ef17c8995dc1e",
+              "score": 712,
+              "confidenceBps": 7800,
+              "riskDerived": 29,
+              "methodologyVersion": "v1",
+              "commitmentDay": "2026-10-26",
+              "commitmentRoot": "0x76d15ac5c145edb8f9736eea7a8ea57a72245209ff891caf9a96cb19d5170109",
+              "leafPosition": 10656,
+              "ownerAddress": "0x1111111111111111111111111111111111111111",
+              "asOfBlock": 50276154,
+              "issuedAt": 1793038332,
+              "validUntil": 1793124732,
+              "keyId": "indicative-test-key"
+            },
+            "signature": "0x75f0dd8c9477921223a60bdcd800887efc761f7a46bc7ba147ba03c300656340498a91903f3fae910b1d79241f27465c9971f7e8b53c368959d12255e74852a81b",
+            "key_id": "indicative-test-key",
+            "committed_score": {
+              "value": 712,
+              "computed_at": "2026-10-26T18:12:12Z"
+            },
+            "proof": {
+              "leaf": {
+                "agent_id": 22286,
+                "value": 712,
+                "computed_at": 1793038332,
+                "salt": "15ee9f1e6a25724adb1ff34c3ba7d05d"
+              },
+              "leaf_format": "sha256(agent_id|value|computed_at_unix|salt)",
+              "position": 10656,
+              "siblings": [
+                "77802746b2d007f3ff197df2c4cb2d244e9b5d24392cec76c75da6ef49d01d5b",
+                "4c901db192d9ba195c7468749f50adb08812a83060d46eaeb9dfdf5b768fffa9",
+                "d9f9a57557194ce2a0f22c5421840679c8135716354e8011b127a4968e92d58a",
+                "0da3a79841e70490ad7a1153460f1992d2a15ffed03146c955723dc4e20a63c4",
+                "dae4adc1322c79d074e1016962995a034d211cb04a9129405b9f5730bd71221b",
+                "f778006892a331dbd995fe95c5117eabc995a73dfdc41139899649ca4ddff5c6",
+                "838159eee9f0beb34773554acbe7f4a40a4be760ac019ab8560ed2d178d4434e",
+                "1054fac6cac6f96bda00a2c56a9a9c779eadf4fa080b118e1be5d46df1f826d6",
+                "84c9abc528e92608ae4299a3d9b7d44cf0d16ccf9c43387294b844de0971f66a",
+                "6d0b61848b4778e97fedb41dbd0da6883fb73535e104daaba2357936d522d85d",
+                "ce9a1513c90f63e77f0ecc9fc9f56b84c133b107cc7cf37bba99f082c08679ed",
+                "962ba0a4162cf6055cc8d634a3517bc8d76f4094a02d76599d6f67f81aeab2ba",
+                "290c3b5ea55b99d24f903cf178763e0f7d11769571643be85d0110612a519ff6",
+                "162aa1d7cc5df44a28ade9014042999b7fe5d6fb16a90ac455325f85f9120bd8"
+              ],
+              "pairing": "sha256(left + right), odd node pairs with itself",
+              "root": "76d15ac5c145edb8f9736eea7a8ea57a72245209ff891caf9a96cb19d5170109",
+              "committed_on": "2026-10-26"
+            },
+            "root_signature": {
+              "key_id": "indicative-test-key",
+              "signed_at": "2026-10-26T18:12:12Z",
+              "value": "0x877b154122427081c70b211eedd145192df3f86851f71effa62f84e64beac8084949ba14c12c96a1bc167afbcdcaf51fe082c406b1f2bfbf4d0190c1990142c11b",
+              "primary_type": "CommitmentRoot"
+            }
+          },
+          "proof": {
+            "type": "EthereumEip712Signature2021",
+            "created": "2026-10-26T18:12:12Z",
+            "proofPurpose": "assertionMethod",
+            "verificationMethod": "did:web:flextrust.io#indicative-test-key",
+            "proofValue": "0x75f0dd8c9477921223a60bdcd800887efc761f7a46bc7ba147ba03c300656340498a91903f3fae910b1d79241f27465c9971f7e8b53c368959d12255e74852a81b",
+            "eip712": {
+              "domain": {
+                "name": "FlexTrust",
+                "version": "1",
+                "chainId": 8453
+              },
+              "types": {
+                "EIP712Domain": [
+                  {
+                    "name": "name",
+                    "type": "string"
+                  },
+                  {
+                    "name": "version",
+                    "type": "string"
+                  },
+                  {
+                    "name": "chainId",
+                    "type": "uint256"
+                  }
+                ],
+                "PassportStatement": [
+                  {
+                    "name": "subject",
+                    "type": "string"
+                  },
+                  {
+                    "name": "subjectId",
+                    "type": "uint64"
+                  },
+                  {
+                    "name": "tier",
+                    "type": "string"
+                  },
+                  {
+                    "name": "documentDigest",
+                    "type": "bytes32"
+                  },
+                  {
+                    "name": "score",
+                    "type": "uint16"
+                  },
+                  {
+                    "name": "confidenceBps",
+                    "type": "uint16"
+                  },
+                  {
+                    "name": "riskDerived",
+                    "type": "uint8"
+                  },
+                  {
+                    "name": "methodologyVersion",
+                    "type": "string"
+                  },
+                  {
+                    "name": "commitmentDay",
+                    "type": "string"
+                  },
+                  {
+                    "name": "commitmentRoot",
+                    "type": "bytes32"
+                  },
+                  {
+                    "name": "leafPosition",
+                    "type": "uint32"
+                  },
+                  {
+                    "name": "ownerAddress",
+                    "type": "string"
+                  },
+                  {
+                    "name": "asOfBlock",
+                    "type": "uint64"
+                  },
+                  {
+                    "name": "issuedAt",
+                    "type": "uint64"
+                  },
+                  {
+                    "name": "validUntil",
+                    "type": "uint64"
+                  },
+                  {
+                    "name": "keyId",
+                    "type": "string"
+                  }
+                ]
+              },
+              "primaryType": "PassportStatement",
+              "signedFields": [
+                "statement.message"
+              ]
+            }
+          }
+        },
+        {
+          "@context": [
+            "https://www.w3.org/ns/credentials/v2"
+          ],
+          "type": [
+            "EnvelopedVerifiableCredential"
+          ],
+          "id": "data:application/vc+jwt,eyJhbGciOiJFZERTQSIsInR5cCI6InZjK2p3dCIsImtpZCI6ImRpZDprZXk6ejZNa3Q4MmpyZEVLNjcxQ0xxanpxQjRGWGJKN1g2eVNKQVZ0VHlUSmF0WGtvYlY0I3o2TWt0ODJqcmRFSzY3MUNMcWp6cUI0RlhiSjdYNnlTSkFWdFR5VEphdFhrb2JWNCJ9.eyJAY29udGV4dCI6WyJodHRwczovL3d3dy53My5vcmcvbnMvY3JlZGVudGlhbHMvdjIiLCJodHRwczovL3czaWQub3JnL2FnZW50LXBhc3Nwb3J0L2JpbmRpbmcvdjEiXSwidHlwZSI6WyJWZXJpZmlhYmxlQ3JlZGVudGlhbCIsIkZsZXhIb2xkQmluZGluZyIsIkFnZW50QmluZGluZyJdLCJpc3N1ZXIiOiJkaWQ6a2V5Ono2TWt0ODJqcmRFSzY3MUNMcWp6cUI0RlhiSjdYNnlTSkFWdFR5VEphdFhrb2JWNCIsInZhbGlkRnJvbSI6IjIwMjYtMTAtMjdUMTA6MDA6MDBaIiwidmFsaWRVbnRpbCI6IjIwMjYtMTAtMjhUMTA6MDA6MDBaIiwiY3JlZGVudGlhbFN1YmplY3QiOnsiaWQiOiJkaWQ6a2V5Ono2TWtrV0V2Y1Q4TjdvaVBDcXZZRldxOXU3YmlRbmFOOGRXVDF2NXBGRmYzWVZUeCIsImFnZW50Ijp7ImVyYzgwMDQiOnsiY2hhaW5faWQiOjg0NTMsInJlZ2lzdHJ5IjoiMHhhYmFiYWJhYmFiYWJhYmFiYWJhYmFiYWJhYmFiYWJhYmFiYWJhYmFiIiwiYWdlbnRfaWQiOiI5OTk5OTkwMDEifX0sIm1hbmRhdGUiOnsiaGFzaCI6InNoYTI1Njo5YjI3NDgyYzFhOWQ2NGM5YmVkODUzOGU5ZGY3MTU0NDVlMjQxM2UwNzZiYmMyZDBjODY2ZWM5ZTAwMjQ0OTM2IiwiaXNzdWVyIjoiZGlkOndlYjpmbGV4eWllbGQuaW8iLCJ2ZXJzaW9uIjoiMSJ9LCJjb25zZW50X3JlZiI6ImNvbnNlbnQ6MjAyNi0xMC0yNjowMDAxIiwiaWRlbnRpdHlfcmVmcyI6W119LCJjcmVkZW50aWFsU3RhdHVzIjp7InR5cGUiOiJCaXRzdHJpbmdTdGF0dXNMaXN0RW50cnkiLCJzdGF0dXNQdXJwb3NlIjoicmV2b2NhdGlvbiIsInN0YXR1c0xpc3RJbmRleCI6IjciLCJzdGF0dXNMaXN0Q3JlZGVudGlhbCI6Imh0dHBzOi8vc3RhdHVzLmZsZXhob2xkLmV4YW1wbGUvbGlzdHMvMS5qd3MiLCJpc3N1ZXIiOiJkaWQ6a2V5Ono2TWttYThGM1RtRkZ2a2Y0cURNRHFmOFdrczRLbkJpR2ZwWGlBZ0tORUNNa1RIWiJ9LCJpZCI6InVybjp1dWlkOjAwMDAwMDAwLTAwMDAtNDAwMC04MDAwLTU2YzQ2YTMxY2M1YSIsImlzcyI6ImRpZDprZXk6ejZNa3Q4MmpyZEVLNjcxQ0xxanpxQjRGWGJKN1g2eVNKQVZ0VHlUSmF0WGtvYlY0Iiwic3ViIjoiZGlkOmtleTp6Nk1ra1dFdmNUOE43b2lQQ3F2WUZXcTl1N2JpUW5hTjhkV1QxdjVwRkZmM1lWVHgiLCJuYmYiOjE3OTMwOTUyMDAsImV4cCI6MTc5MzE4MTYwMCwiaWF0IjoxNzkzMDk2OTQwLCJqdGkiOiJ1cm46dXVpZDowMDAwMDAwMC0wMDAwLTQwMDAtODAwMC01NmM0NmEzMWNjNWEiLCJub25jZSI6Ijc2YjMwYzZiN2Y0ZWFkYTA3YzNjMjVlNTJiMTRkZWRkIn0.hzCoHjHTRq58i6qzYl28KMWjIATfRvBGMwBjhC4FwASmBFFwXb8QYZ0KUM9qt3XHLmH9GYXQCof13swDoo-rAA"
+        }
+      ],
+      "policy_url": "https://door.example/policy",
+      "anchors": [],
+      "presented_at": "2026-10-27T10:30:00Z",
+      "nonce": "d03c94ce98548dd680d79b0081cdb4bb"
+    },
+    "envelope_hash": "sha256:445baea1ad5a95fef811a5ea439eb7a2f33ea5154be1a6a9c51a24e26719e5dd",
+    "blocks": {
+      "mandate": "ok",
+      "record": "ok",
+      "binding": "ok"
+    },
+    "cross": [],
+    "advisory": [
+      "bound_stale"
+    ],
+    "data_form_bytes": 19436
+  }
+}

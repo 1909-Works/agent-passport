@@ -1,0 +1,47 @@
+{
+  "name": "binding-pkh-erc8004-valid",
+  "description": "ERC-8004 agent 44 registered to wallet O, binding signed by wallet O",
+  "spec": "docs/spec/binding-v1.md",
+  "now": "2026-10-26T12:00:00Z",
+  "forged": false,
+  "inputs": {
+    "binding": {
+      "owner": "did:pkh:eip155:1:0x43bAD98cb1436bB70e03110Bfe96e588c4e4116e",
+      "agent": {
+        "key_id": "did:key:z6MkkWEvcT8N7oiPCqvYFWq9u7biQnaN8dWT1v5pFFf3YVTx",
+        "erc8004": {
+          "chain_id": 1,
+          "registry": "0xabababababababababababababababababababab",
+          "agent_id": "44"
+        }
+      },
+      "mandate": {
+        "hash": "sha256:e308602b889c47b0cf23c2680dc35ca1cefa20143b4dd03c874e7233d69fdaaa",
+        "issuer": "did:web:flexyield.example",
+        "version": "1"
+      },
+      "valid_from": "2026-10-26T11:59:00Z",
+      "valid_until": "2026-10-27T12:00:00Z",
+      "status": {
+        "url": "https://status.flexhold.example/lists/1.jws",
+        "index": 7,
+        "issuer": "did:key:z6Mkma8F3TmFFvkf4qDMDqf8Wks4KnBiGfpXiAgKNECMkTHZ"
+      },
+      "consent_ref": "consent:2026-10-26:0001",
+      "identity_refs": []
+    },
+    "signing_key": "owner_pkh",
+    "jti": "urn:uuid:00000000-0000-4000-8000-13b97347ba2d",
+    "iat": "2026-10-26T11:59:00Z",
+    "nonce": "d6c35fd569b2af4f169a0e915cd7276f"
+  },
+  "verify": {
+    "status_list": "status-list-valid",
+    "registration": "registration-snapshot"
+  },
+  "expected": {
+    "ok": true,
+    "reason": "ok",
+    "jws": "eyJhbGciOiJFSVA3MTIiLCJ0eXAiOiJ2Yytqd3QiLCJraWQiOiJkaWQ6cGtoOmVpcDE1NToxOjB4NDNiQUQ5OGNiMTQzNmJCNzBlMDMxMTBCZmU5NmU1ODhjNGU0MTE2ZSNibG9ja2NoYWluQWNjb3VudElkIn0.eyJAY29udGV4dCI6WyJodHRwczovL3d3dy53My5vcmcvbnMvY3JlZGVudGlhbHMvdjIiLCJodHRwczovL3czaWQub3JnL2FnZW50LXBhc3Nwb3J0L2JpbmRpbmcvdjEiXSwidHlwZSI6WyJWZXJpZmlhYmxlQ3JlZGVudGlhbCIsIkZsZXhIb2xkQmluZGluZyIsIkFnZW50QmluZGluZyJdLCJpc3N1ZXIiOiJkaWQ6cGtoOmVpcDE1NToxOjB4NDNiQUQ5OGNiMTQzNmJCNzBlMDMxMTBCZmU5NmU1ODhjNGU0MTE2ZSIsInZhbGlkRnJvbSI6IjIwMjYtMTAtMjZUMTE6NTk6MDBaIiwidmFsaWRVbnRpbCI6IjIwMjYtMTAtMjdUMTI6MDA6MDBaIiwiY3JlZGVudGlhbFN1YmplY3QiOnsiaWQiOiJkaWQ6a2V5Ono2TWtrV0V2Y1Q4TjdvaVBDcXZZRldxOXU3YmlRbmFOOGRXVDF2NXBGRmYzWVZUeCIsImFnZW50Ijp7ImVyYzgwMDQiOnsiY2hhaW5faWQiOjEsInJlZ2lzdHJ5IjoiMHhhYmFiYWJhYmFiYWJhYmFiYWJhYmFiYWJhYmFiYWJhYmFiYWJhYmFiIiwiYWdlbnRfaWQiOiI0NCJ9fSwibWFuZGF0ZSI6eyJoYXNoIjoic2hhMjU2OmUzMDg2MDJiODg5YzQ3YjBjZjIzYzI2ODBkYzM1Y2ExY2VmYTIwMTQzYjRkZDAzYzg3NGU3MjMzZDY5ZmRhYWEiLCJpc3N1ZXIiOiJkaWQ6d2ViOmZsZXh5aWVsZC5leGFtcGxlIiwidmVyc2lvbiI6IjEifSwiY29uc2VudF9yZWYiOiJjb25zZW50OjIwMjYtMTAtMjY6MDAwMSIsImlkZW50aXR5X3JlZnMiOltdfSwiY3JlZGVudGlhbFN0YXR1cyI6eyJ0eXBlIjoiQml0c3RyaW5nU3RhdHVzTGlzdEVudHJ5Iiwic3RhdHVzUHVycG9zZSI6InJldm9jYXRpb24iLCJzdGF0dXNMaXN0SW5kZXgiOiI3Iiwic3RhdHVzTGlzdENyZWRlbnRpYWwiOiJodHRwczovL3N0YXR1cy5mbGV4aG9sZC5leGFtcGxlL2xpc3RzLzEuandzIiwiaXNzdWVyIjoiZGlkOmtleTp6Nk1rbWE4RjNUbUZGdmtmNHFETURxZjhXa3M0S25CaUdmcFhpQWdLTkVDTWtUSFoifSwiaWQiOiJ1cm46dXVpZDowMDAwMDAwMC0wMDAwLTQwMDAtODAwMC0xM2I5NzM0N2JhMmQiLCJpc3MiOiJkaWQ6cGtoOmVpcDE1NToxOjB4NDNiQUQ5OGNiMTQzNmJCNzBlMDMxMTBCZmU5NmU1ODhjNGU0MTE2ZSIsInN1YiI6ImRpZDprZXk6ejZNa2tXRXZjVDhON29pUENxdllGV3E5dTdiaVFuYU44ZFdUMXY1cEZGZjNZVlR4IiwibmJmIjoxNzkzMDE1OTQwLCJleHAiOjE3OTMxMDI0MDAsImlhdCI6MTc5MzAxNTk0MCwianRpIjoidXJuOnV1aWQ6MDAwMDAwMDAtMDAwMC00MDAwLTgwMDAtMTNiOTczNDdiYTJkIiwibm9uY2UiOiJkNmMzNWZkNTY5YjJhZjRmMTY5YTBlOTE1Y2Q3Mjc2ZiJ9.qr5EdovVQkHOlAQHJhNw7OlSdIS7ZhoEq5phMPsEjpMcpXOgkIkc67TlltZ3NsCqTmCyCpD6UXszZ3As08jn4Rw"
+  }
+}

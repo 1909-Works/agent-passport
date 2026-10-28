@@ -1,0 +1,71 @@
+{
+  "test_only": true,
+  "warning": "Test vectors only. Seeds are public; never use these keys for anything real.",
+  "seed_rule": "seed = SHA-256(seed_string) → Ed25519 private key; for *_pkh keys the same 32 bytes are the secp256k1 private scalar (chain id 1)",
+  "keys": {
+    "owner": {
+      "seed_string": "flexhold-test-vector-owner-key-O",
+      "seed_hex": "96367e08f8cde366611d4da2652c87fe1f7d8f05a1f3617d12481b88dc71cb9a",
+      "did": "did:key:z6Mkt82jrdEK671CLqjzqB4FXbJ7X6ySJAVtTyTJatXkobV4",
+      "kid": "did:key:z6Mkt82jrdEK671CLqjzqB4FXbJ7X6ySJAVtTyTJatXkobV4#z6Mkt82jrdEK671CLqjzqB4FXbJ7X6ySJAVtTyTJatXkobV4",
+      "alg": "EdDSA",
+      "jwk": {
+        "kty": "OKP",
+        "crv": "Ed25519",
+        "x": "yxaJZeDoxCQUgAnnVCA4wGj_x1YiRR61T6P2YoHMIQM"
+      }
+    },
+    "recovery": {
+      "seed_string": "flexhold-test-vector-recovery-key",
+      "seed_hex": "da009640ae2df8a15b0a5df61683819c7a99731aa8ce750cbeade8a819fbe3eb",
+      "did": "did:key:z6Mkma8F3TmFFvkf4qDMDqf8Wks4KnBiGfpXiAgKNECMkTHZ",
+      "kid": "did:key:z6Mkma8F3TmFFvkf4qDMDqf8Wks4KnBiGfpXiAgKNECMkTHZ#z6Mkma8F3TmFFvkf4qDMDqf8Wks4KnBiGfpXiAgKNECMkTHZ",
+      "alg": "EdDSA",
+      "jwk": {
+        "kty": "OKP",
+        "crv": "Ed25519",
+        "x": "acQNQRjON8KRQSqT5he39zYQEhM71MUdvUJJZceUcwA"
+      }
+    },
+    "other": {
+      "seed_string": "flexhold-test-vector-other-key-X",
+      "seed_hex": "e418cbe3c11c1cae62a6acc84f9ae2cf691da87720f990909f410db83873ad5b",
+      "did": "did:key:z6Mks9j43k2MZVoCbSKrdsU1fDzKKSHmyJiSm4REmbSk5GxP",
+      "kid": "did:key:z6Mks9j43k2MZVoCbSKrdsU1fDzKKSHmyJiSm4REmbSk5GxP#z6Mks9j43k2MZVoCbSKrdsU1fDzKKSHmyJiSm4REmbSk5GxP",
+      "alg": "EdDSA",
+      "jwk": {
+        "kty": "OKP",
+        "crv": "Ed25519",
+        "x": "vKoDbQdly1aBKNMVYKiGNDKEFPp4kyHE_zEd7rhhRBg"
+      }
+    },
+    "agent": {
+      "seed_string": "flexhold-test-vector-agent-key-K",
+      "seed_hex": "c81605d75cec5515a5ab92c2248200c8c6e8dd5524450e18c01fdcb7ea5f6aa7",
+      "did": "did:key:z6MkkWEvcT8N7oiPCqvYFWq9u7biQnaN8dWT1v5pFFf3YVTx",
+      "kid": "did:key:z6MkkWEvcT8N7oiPCqvYFWq9u7biQnaN8dWT1v5pFFf3YVTx#z6MkkWEvcT8N7oiPCqvYFWq9u7biQnaN8dWT1v5pFFf3YVTx",
+      "alg": "EdDSA",
+      "jwk": {
+        "kty": "OKP",
+        "crv": "Ed25519",
+        "x": "WemY45I327aHIE1KD0h7K7ntCaoHh_VgvKkUwVmHJkM"
+      }
+    },
+    "owner_pkh": {
+      "seed_string": "flexhold-test-vector-owner-wallet-O-secp256k1",
+      "seed_hex": "96dba1325b68dd6a93bd4db445947c27c871b9c21ccf5521072fc440701ad96b",
+      "did": "did:pkh:eip155:1:0x43bAD98cb1436bB70e03110Bfe96e588c4e4116e",
+      "kid": "did:pkh:eip155:1:0x43bAD98cb1436bB70e03110Bfe96e588c4e4116e#blockchainAccountId",
+      "alg": "EIP712",
+      "address": "0x43bAD98cb1436bB70e03110Bfe96e588c4e4116e"
+    },
+    "other_pkh": {
+      "seed_string": "flexhold-test-vector-other-wallet-X-secp256k1",
+      "seed_hex": "daf03fb0c2c6659eaeec0fc8561a3c11ab5785bc38b82774c64bc399d2523845",
+      "did": "did:pkh:eip155:1:0x56985D3716Ad40E2F8F8670cF4B46A4Fb3DD30D7",
+      "kid": "did:pkh:eip155:1:0x56985D3716Ad40E2F8F8670cF4B46A4Fb3DD30D7#blockchainAccountId",
+      "alg": "EIP712",
+      "address": "0x56985D3716Ad40E2F8F8670cF4B46A4Fb3DD30D7"
+    }
+  }
+}
