@@ -1,6 +1,6 @@
-# Agent Passport test vectors — binding v1.1 and envelope v1.0 (regenerated 2026-10-28)
+# Agent Passport test vectors — binding v1.1, envelope v1.0, mandate collector (2026-10-29)
 
-Published subset of the holder implementation's vector set: the 21 binding cases, the three status lists, the registration snapshot, the test keys and the example envelope. The record and mandate vectors (the collector's verdicts on the reputation issuer's and the authority's indicative blocks) are not republished here; the blocks they rest on belong to those issuers.
+Published subset of the holder implementation's vector set: the 21 binding cases, the three status lists, the registration snapshot, the test keys, the example envelope and — since 2026-10-29, with the authority's permission — the authority's indicative mandate block and the holder's 13 mandate-collector vectors over it. The record vectors (the collector's verdicts on the reputation issuer's indicative block) are not republished yet; that block belongs to its issuer.
 
 **Publication (2026-10-28, envelope v1.0):** the binding `@context` second entry became the permanent identifier `https://w3id.org/agent-passport/binding/v1` (it was a placeholder); the context sits in the signed payload, so all 21 binding JWS and the example envelope changed bytes once more. Keys, status lists and the registration snapshot are byte-identical to 10-28 11:31 UTC.
 
@@ -32,6 +32,47 @@ To verify from the vectors alone, in any language:
 | binding-pkh-wrong-owner (forged: wallet X signs claims naming wallet O) | signature_invalid |
 
 Ruby: `flexhold vectors verify` (exit 0 when all reproduce and verify).
+
+## Mandate vectors (2026-10-29) — the holder's collector verdict on the authority's mandate block
+
+`fixture-flexyield-mandate-indicative-v0.1.json` is **FlexYield's** indicative mandate block, published here with FlexYield's permission
+under CC BY 4.0 (attribution: FlexYield), byte-identical to the file FlexYield delivered on 2026-10-28 (`mandate_hash`
+`sha256:9b27482c…4936`; the generator stays in FlexYield's repository). It is a `mandate-v1` credential as a compact JWS (EdDSA, `typ vc+jwt`,
+issuer `did:web:flexyield.io`), signed with a **test-only** key whose seed is published inside the file (`key.test_only: true`); the values
+are illustrative, the shape and the field names are the contract. `mandate-keys.json` is that key as a JWK Set with validity
+(`kid, kty OKP, crv Ed25519, x, valid_from, retired_at, compromised_at`) — the shape a holder reads for an issuer's signing keys.
+
+Each `mandate-*.json` holds `document` (`{jws}`), `now` (the verifier's clock), `jwk_directory` (`kid → {x, valid_from, retired_at,
+compromised_at}`), optional `expected_agent` (the binding's agent key K) and `expected` (`ok`, `reason`). The `spec` field names the holder's
+collector spec, which is not republished; the six checks it runs on a mandate block are these, in order — the first failing check is the reason:
+
+| # | Check | Reason |
+|---|---|---|
+| 1 | key: `kid` is in the JWK Set, valid at `iat` (else `nbf`), not retired, not compromised; the Ed25519 signature verifies with that key | `key_unknown`, `key_compromised`, `signature_invalid` |
+| 2 | issuer: `iss == issuer.id ==` the DID part of `kid` | `issuer_mismatch` |
+| 3 | window: `nbf ≤ now < exp` | `not_yet_valid`, `expired` |
+| 4 | subject: when the caller names the binding's agent key K, `credentialSubject.id == sub == K` | `agent_mismatch` |
+| 5 | claim: `principal.claim.kind == "mandate"`, `asserts_ownership == false`, `asserts_identity == false` — a mandate mandates, never asserts ownership or identity | `claim_overreach` |
+| 6 | receipts: `inside + outside + no_mandate == count`, `window.from < window.to`, every sample verdict ∈ {inside, outside, no_mandate} with integer `cost_cents` | `receipts_inconsistent` |
+
+A document that is not a compact JWS, or whose signed subject carries a float where cents / integers / RFC 3339 are required, reads `malformed` before check 1.
+
+**Two kinds of document:** `mandate-indicative-as-delivered` carries FlexYield's JWS unchanged and expects `ok`; every other vector is the delivered
+payload re-signed with the published test seed and then mutated. Re-signing the delivered payload with that seed reproduces FlexYield's JWS
+byte-exact (`mandate-valid` == the delivered JWS), so the two generators agree.
+
+| Vector | Reason |
+|---|---|
+| mandate-indicative-as-delivered, mandate-valid, mandate-valid-agent-match (`expected_agent` = the subject) | ok |
+| mandate-key-unknown / mandate-key-compromised / mandate-signature-invalid | key_unknown / key_compromised / signature_invalid |
+| mandate-issuer-mismatch | issuer_mismatch |
+| mandate-not-yet-valid / mandate-expired | not_yet_valid / expired |
+| mandate-agent-mismatch (`expected_agent` ≠ the subject) | agent_mismatch |
+| mandate-claim-overreach | claim_overreach |
+| mandate-receipts-inconsistent | receipts_inconsistent |
+| mandate-float-in-subject | malformed |
+
+To verify in any language: split the JWS, look the `kid` up in `jwk_directory`, Ed25519-verify, run the six checks, compare the reason.
 
 ## Example envelope (H3, 2026-10-28) — `envelope-example-v1.0.json`
 

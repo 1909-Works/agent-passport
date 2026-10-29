@@ -38,10 +38,11 @@ this repository defines the envelope and the binding.
 
 ## Test vectors
 
-`vectors/` holds the binding and envelope test vectors used by the implementations that agreed this format: 21 binding
-cases (valid, expired, revoked, wrong owner, mandate mismatch, …), three status lists, a registration snapshot, and one
-consistent example envelope. Every key in the vectors is **test-only**, published with its seed, and marked as such; each
-file's `verify` block names the key and the expected verdict. See [`vectors/README.md`](vectors/README.md).
+`vectors/` holds the test vectors used by the implementations that agreed this format: 21 binding cases (valid, expired,
+revoked, wrong owner, mandate mismatch, …), three status lists, a registration snapshot, one consistent example envelope, and
+— since 2026-10-29 — the authority's indicative mandate block with the holder's 13 collector vectors over it (valid, key
+unknown, expired, claim overreach, …). Every key in the vectors is **test-only**, published with its seed, and marked as such;
+each file names the sources to supply and the expected verdict. See [`vectors/README.md`](vectors/README.md).
 
 ## Who maintains this
 
@@ -55,3 +56,5 @@ Contact: Christian Schlager · GitHub [`CSdev1909`](https://github.com/CSdev1909
 
 The specifications, contexts and vectors in this repository are published under
 [Creative Commons Attribution 4.0 International (CC BY 4.0)](LICENSE).
+The indicative mandate block in `vectors/fixture-flexyield-mandate-indicative-v0.1.json` (and the JWS the mandate vectors carry) is
+**FlexYield's**, published here with FlexYield's permission under the same licence — attribution: FlexYield.

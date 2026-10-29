@@ -1,0 +1,16 @@
+{
+  "test_only": true,
+  "warning": "FlexYield's indicative test key (seed published in its fixture); never trust it for anything real.",
+  "shape": "JWK Set with validity — the shape FlexHold reads for an issuer's signing keys (kid, kty OKP, crv Ed25519, x, valid_from, retired_at, compromised_at)",
+  "keys": [
+    {
+      "kid": "did:web:flexyield.io#mandate-indicative-2026-10",
+      "kty": "OKP",
+      "crv": "Ed25519",
+      "x": "CHFqVPPTx1FBxdu1oDVL8Exwc_a4tjg1VSwRX0l5eSQ",
+      "valid_from": "2026-10-27",
+      "retired_at": null,
+      "compromised_at": null
+    }
+  ]
+}
