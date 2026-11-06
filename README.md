@@ -50,7 +50,7 @@ The format was written and agreed over an open review between three projects —
 reputation issuer (record), and a holder (binding) — and is maintained by the holder project. Changes go through numbered
 review rounds between the three; the published version here is the agreed one.
 
-Contact: Christian Schlager · GitHub [`CSdev1909`](https://github.com/CSdev1909) · christian.schlager@me.com
+Contact: GitHub [`CSdev1909`](https://github.com/CSdev1909) · hello@flexyield.io
 
 ## Licence
 
