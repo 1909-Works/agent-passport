@@ -1,0 +1,188 @@
+{
+  "name": "record-public-tier-unsigned",
+  "description": "public tier: no statement, no proof — proves nothing by design",
+  "spec": "docs/spec/collector-v1.md",
+  "source": "flextrust",
+  "note": "derived from FlexTrust's indicative fixture (ephemeral test key indicative-test-key); verdict only, nothing re-signed",
+  "now": "2026-10-26T18:30:00Z",
+  "key_directory": {
+    "indicative-test-key": {
+      "address": "0xE5B5595C2f11306CD43D725CE8b98707a139BbBd",
+      "valid_from": "2026-10-26",
+      "retired_at": null,
+      "compromised_at": null
+    }
+  },
+  "commitments": {
+    "2026-10-26": {
+      "merkle_root": "76d15ac5c145edb8f9736eea7a8ea57a72245209ff891caf9a96cb19d5170109",
+      "leaf_count": 10657,
+      "methodology_version": "v1"
+    }
+  },
+  "block": {
+    "indicative": true,
+    "note": "Indicative record block (passport-v1) for FlexHold's collector (H2, H-O4): a synthetic agent, signed with an ephemeral test key (indicative-test-key), NOT a FlexTrust attestation key. Shape and field names are the contract; values are illustrative; do not verify against production keys.",
+    "@context": [
+      "https://www.w3.org/ns/credentials/v2",
+      "https://flextrust.io/spec/passport/v1"
+    ],
+    "id": "https://flextrust.io/agents/22286/passport",
+    "type": [
+      "VerifiableCredential",
+      "FlexTrustAgentPassport"
+    ],
+    "issuer": {
+      "id": "did:web:flextrust.io",
+      "name": "FlexTrust"
+    },
+    "validFrom": "2026-10-26T18:12:12Z",
+    "validUntil": "2026-10-27T18:12:12Z",
+    "tier": "public",
+    "version": "passport-v1",
+    "credentialSubject": {
+      "id": "erc8004:8453:999999001",
+      "agent": {
+        "id": 22286,
+        "did": "erc8004:8453:999999001",
+        "name": "Indicative Courier",
+        "first_seen_at": "2026-09-26T18:12:12Z",
+        "status": "active"
+      },
+      "score": {
+        "value": 712,
+        "scale": "0-1000",
+        "view": "exact",
+        "band": "established",
+        "percentile": 100,
+        "confidence_bps": 7800,
+        "computed_at": "2026-10-26T18:12:12Z",
+        "methodology_version": "v1",
+        "inputs_hash": "indicative",
+        "committed": {
+          "day": "2026-10-26",
+          "root": "76d15ac5c145edb8f9736eea7a8ea57a72245209ff891caf9a96cb19d5170109"
+        }
+      },
+      "risk_0_100": {
+        "value": 29,
+        "basis": "derived",
+        "formula": "round((1000 - score) / 10)",
+        "from": "exact score"
+      },
+      "factors": {
+        "settlement_volume": {
+          "weight_bps": 4000,
+          "contribution_points": 320,
+          "evidence_count": 9,
+          "note": null
+        }
+      },
+      "evidence_counts": {
+        "settlements": 0,
+        "feedback": 0,
+        "validations": 0,
+        "attested_receipts": 0
+      },
+      "flags": [
+        "manipulation_pattern"
+      ],
+      "incidents": [
+        {
+          "id": "anomaly-1",
+          "type": "manipulation_pattern",
+          "state": "confirmed",
+          "at": "2026-10-26T18:12:12Z",
+          "reviewed_at": "2026-10-26T18:12:12Z",
+          "mandate": "unknown",
+          "score_effect": "none"
+        }
+      ],
+      "incident_policy": {
+        "exposure": "public-safe: incident types, states and dates — never detector internals, furnisher names or amounts",
+        "mandate": "whether an incident fell inside or outside the agent's mandate is a verdict its platform furnishes; FlexTrust never infers it (unknown until furnished)",
+        "score_effect": "none: no incident changes a score in this version; only outside-mandate incidents and counterparty harm could ever carry weight, and only under a published methodology version"
+      },
+      "control_continuity": {
+        "owner_address": "0x1111111111111111111111111111111111111111",
+        "owner_since": {
+          "observed_at": "2026-10-26T18:12:12Z",
+          "basis": "chain_event",
+          "block": 36500000,
+          "tx_hash": "0xc3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3"
+        },
+        "owner_changes": 1,
+        "owner_history": [
+          {
+            "from": "0x9999999999999999999999999999999999999999",
+            "to": "0x1111111111111111111111111111111111111111",
+            "burn": false,
+            "block": 36500000,
+            "tx_hash": "0xc3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3",
+            "observed_at": "2026-10-26T18:12:12Z"
+          }
+        ],
+        "registrations": [
+          {
+            "chain": "base",
+            "chain_id": 8453,
+            "token_id": "999999001",
+            "owner_address": "0x1111111111111111111111111111111111111111",
+            "registered_at_block": 36000000,
+            "revoked_at": null,
+            "owner_since": {
+              "observed_at": "2026-10-26T18:12:12Z",
+              "basis": "chain_event",
+              "block": 36500000,
+              "tx_hash": "0xc3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3"
+            }
+          }
+        ],
+        "anchors": [
+          {
+            "kind": "http_key",
+            "identifier": "ed25519:e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5",
+            "verified_at": "2026-10-16T18:12:12Z",
+            "status": "active"
+          }
+        ],
+        "anchor_note": "Key rotation and revocation are recorded once the key directory ships (F9); until then an anchor is listed as proven on its verification date.",
+        "as_of_block": 50276154
+      },
+      "bound": false,
+      "binding_status_url": null,
+      "operator_attested_by": null,
+      "liveness": null,
+      "slots": {
+        "bound": "true once a FlexHold binding for the owner key is present and not revoked (status list)",
+        "operator_attested_by": "an accepted attester (x401, EUDI wallet, KYC read-only) — never the operator's legal identity",
+        "liveness": "0–6 rungs, C2"
+      },
+      "history": [
+        {
+          "date": "2026-10-26",
+          "value": 712,
+          "confidence_bps": 7800
+        }
+      ]
+    },
+    "credentialStatus": {
+      "type": "FlexTrustLivePassport",
+      "refresh": "https://flextrust.io/agents/22286/passport.json"
+    },
+    "termsOfUse": {
+      "type": "FlexTrustTerms",
+      "version": "1.0",
+      "url": "https://flextrust.io/terms"
+    },
+    "verify": {
+      "commitments": "https://flextrust.io/commitments.json",
+      "keys": "https://flextrust.io/.well-known/flextrust",
+      "spec": "https://flextrust.io/spec/passport"
+    }
+  },
+  "expected": {
+    "ok": false,
+    "reason": "unsigned"
+  }
+}

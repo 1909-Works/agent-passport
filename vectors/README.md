@@ -1,6 +1,6 @@
-# Agent Passport test vectors — binding v1.1, envelope v1.0, mandate collector (2026-10-29)
+# Agent Passport test vectors — binding v1.1, envelope v1.0, mandate and record collector (2026-11-07)
 
-Published subset of the holder implementation's vector set: the 21 binding cases, the three status lists, the registration snapshot, the test keys, the example envelope and — since 2026-10-29, with the authority's permission — the authority's indicative mandate block and the holder's 13 mandate-collector vectors over it. The record vectors (the collector's verdicts on the reputation issuer's indicative block) are not republished yet; that block belongs to its issuer.
+Published subset of the holder implementation's vector set: the 21 binding cases, the three status lists, the registration snapshot, the test keys, the example envelope and — since 2026-10-29, with the authority's permission — the authority's indicative mandate block and the holder's 13 mandate-collector vectors over it, and — since 2026-11-07, with the reputation issuer's permission — the reputation issuer's indicative record block and the holder's 13 record-collector vectors over it. With that, every block of the example envelope has its issuer's fixture and the holder's verdict vectors published here.
 
 **Publication (2026-10-28, envelope v1.0):** the binding `@context` second entry became the permanent identifier `https://w3id.org/agent-passport/binding/v1` (it was a placeholder); the context sits in the signed payload, so all 21 binding JWS and the example envelope changed bytes once more. Keys, status lists and the registration snapshot are byte-identical to 10-28 11:31 UTC.
 
@@ -73,6 +73,46 @@ byte-exact (`mandate-valid` == the delivered JWS), so the two generators agree.
 | mandate-float-in-subject | malformed |
 
 To verify in any language: split the JWS, look the `kid` up in `jwk_directory`, Ed25519-verify, run the six checks, compare the reason.
+
+## Record vectors (2026-11-07) — the holder's collector verdict on the reputation issuer's record block
+
+`fixture-flextrust-passport-indicative-v0.1.json` is **FlexTrust's** indicative record block (`passport-v1`, full tier), published here with
+FlexTrust's permission under CC BY 4.0 (attribution: FlexTrust), byte-identical to the file FlexTrust delivered over the bridge on 2026-10-26
+(the version the holder's vectors verify against; FlexTrust's later fixture revisions add `leaf_count`, `test_keys`, a filled `liveness` slot and
+`kind` on incident items — same shape, not needed for these verdicts). It is signed with the ephemeral **`indicative-test-key`** — never a
+FlexTrust attestation key; the address the key directory pins (`0xE5B5595C2f11306CD43D725CE8b98707a139BbBd`) is that test key's. Values are
+illustrative (a synthetic agent, `erc8004:8453:999999001`); the shape, the field names and the six collector checks are the contract. The
+generator and the real attestation keys stay in FlexTrust's repository.
+
+Each `record-*.json` holds `block` (the fixture, possibly mutated), `now` (the verifier's clock), `key_directory` (`key_id → {address,
+valid_from, retired_at, compromised_at}`), `commitments` (`day → {merkle_root, leaf_count, methodology_version}`; `leaf_count` 10657 = the
+synthetic agent is the last leaf) and `expected` (`ok`, `reason`). Nothing is re-signed — the holder holds no FlexTrust key — so a runner
+checks verdicts only. The `spec` field names the holder's collector spec, which is not republished; the six checks it runs, in order — the first
+failing check is the reason:
+
+| # | Check | Passes when | Reason |
+|---|---|---|---|
+| 1 | window | `statement.message.issuedAt ≤ now < validUntil` (epoch seconds) | `not_yet_valid`, `expired` |
+| 2 | key | the address recovered from the EIP-712 `PassportStatement` signature equals the key directory's address for `keyId`, and that key was valid (`valid_from ≤ issuedAt`), not retired and not compromised at `issuedAt` | `key_unknown`, `key_compromised`, `signature_invalid` |
+| 3 | digest | sha256 of the canonical `credentialSubject` equals `documentDigest` | `digest_mismatch` |
+| 4 | merkle | the proof names the signed `leafPosition` and `commitmentDay`, and the leaf folds to `commitmentRoot` (hex-concatenation pairing) | `merkle_invalid` |
+| 5 | root | the commitments source has the day, its `merkle_root` equals `commitmentRoot`, and the `CommitmentRoot` signature recovers to a directory key valid at `signed_at` | `root_unavailable`, `root_mismatch`, `root_signature_invalid` |
+| 6 | freshness | `committed_score.value == statement.message.score` | `score_mismatch` |
+
+Before the checks: a document that does not parse as `passport-v1` is `malformed`; a public-tier document (no `statement`) is `unsigned` — shown, proving nothing.
+
+| Vector | Reason |
+|---|---|
+| record-indicative-valid | ok |
+| record-not-yet-valid / record-expired | not_yet_valid / expired |
+| record-key-unknown / record-key-compromised / record-signature-invalid | key_unknown / key_compromised / signature_invalid |
+| record-digest-mismatch | digest_mismatch |
+| record-merkle-invalid | merkle_invalid |
+| record-root-unavailable / record-root-mismatch / record-root-signature-invalid | root_unavailable / root_mismatch / root_signature_invalid |
+| record-score-mismatch | score_mismatch |
+| record-public-tier-unsigned | unsigned |
+
+To verify in any language: parse `block`, run the six checks with the two sources given, compare the reason.
 
 ## Example envelope (H3, 2026-10-28) — `envelope-example-v1.0.json`
 

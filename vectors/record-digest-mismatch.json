@@ -1,0 +1,350 @@
+{
+  "name": "record-digest-mismatch",
+  "description": "the subject was changed after signing (score 712 → 713)",
+  "spec": "docs/spec/collector-v1.md",
+  "source": "flextrust",
+  "note": "derived from FlexTrust's indicative fixture (ephemeral test key indicative-test-key); verdict only, nothing re-signed",
+  "now": "2026-10-26T18:30:00Z",
+  "key_directory": {
+    "indicative-test-key": {
+      "address": "0xE5B5595C2f11306CD43D725CE8b98707a139BbBd",
+      "valid_from": "2026-10-26",
+      "retired_at": null,
+      "compromised_at": null
+    }
+  },
+  "commitments": {
+    "2026-10-26": {
+      "merkle_root": "76d15ac5c145edb8f9736eea7a8ea57a72245209ff891caf9a96cb19d5170109",
+      "leaf_count": 10657,
+      "methodology_version": "v1"
+    }
+  },
+  "block": {
+    "indicative": true,
+    "note": "Indicative record block (passport-v1) for FlexHold's collector (H2, H-O4): a synthetic agent, signed with an ephemeral test key (indicative-test-key), NOT a FlexTrust attestation key. Shape and field names are the contract; values are illustrative; do not verify against production keys.",
+    "@context": [
+      "https://www.w3.org/ns/credentials/v2",
+      "https://flextrust.io/spec/passport/v1"
+    ],
+    "id": "https://flextrust.io/agents/22286/passport",
+    "type": [
+      "VerifiableCredential",
+      "FlexTrustAgentPassport"
+    ],
+    "issuer": {
+      "id": "did:web:flextrust.io",
+      "name": "FlexTrust"
+    },
+    "validFrom": "2026-10-26T18:12:12Z",
+    "validUntil": "2026-10-27T18:12:12Z",
+    "tier": "full",
+    "version": "passport-v1",
+    "credentialSubject": {
+      "id": "erc8004:8453:999999001",
+      "agent": {
+        "id": 22286,
+        "did": "erc8004:8453:999999001",
+        "name": "Indicative Courier",
+        "first_seen_at": "2026-09-26T18:12:12Z",
+        "status": "active"
+      },
+      "score": {
+        "value": 713,
+        "scale": "0-1000",
+        "view": "exact",
+        "band": "established",
+        "percentile": 100,
+        "confidence_bps": 7800,
+        "computed_at": "2026-10-26T18:12:12Z",
+        "methodology_version": "v1",
+        "inputs_hash": "indicative",
+        "committed": {
+          "day": "2026-10-26",
+          "root": "76d15ac5c145edb8f9736eea7a8ea57a72245209ff891caf9a96cb19d5170109"
+        }
+      },
+      "risk_0_100": {
+        "value": 29,
+        "basis": "derived",
+        "formula": "round((1000 - score) / 10)",
+        "from": "exact score"
+      },
+      "factors": {
+        "settlement_volume": {
+          "weight_bps": 4000,
+          "contribution_points": 320,
+          "evidence_count": 9,
+          "note": null
+        }
+      },
+      "evidence_counts": {
+        "settlements": 0,
+        "feedback": 0,
+        "validations": 0,
+        "attested_receipts": 0
+      },
+      "flags": [
+        "manipulation_pattern"
+      ],
+      "incidents": [
+        {
+          "id": "anomaly-1",
+          "type": "manipulation_pattern",
+          "state": "confirmed",
+          "at": "2026-10-26T18:12:12Z",
+          "reviewed_at": "2026-10-26T18:12:12Z",
+          "mandate": "unknown",
+          "score_effect": "none"
+        }
+      ],
+      "incident_policy": {
+        "exposure": "public-safe: incident types, states and dates — never detector internals, furnisher names or amounts",
+        "mandate": "whether an incident fell inside or outside the agent's mandate is a verdict its platform furnishes; FlexTrust never infers it (unknown until furnished)",
+        "score_effect": "none: no incident changes a score in this version; only outside-mandate incidents and counterparty harm could ever carry weight, and only under a published methodology version"
+      },
+      "control_continuity": {
+        "owner_address": "0x1111111111111111111111111111111111111111",
+        "owner_since": {
+          "observed_at": "2026-10-26T18:12:12Z",
+          "basis": "chain_event",
+          "block": 36500000,
+          "tx_hash": "0xc3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3"
+        },
+        "owner_changes": 1,
+        "owner_history": [
+          {
+            "from": "0x9999999999999999999999999999999999999999",
+            "to": "0x1111111111111111111111111111111111111111",
+            "burn": false,
+            "block": 36500000,
+            "tx_hash": "0xc3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3",
+            "observed_at": "2026-10-26T18:12:12Z"
+          }
+        ],
+        "registrations": [
+          {
+            "chain": "base",
+            "chain_id": 8453,
+            "token_id": "999999001",
+            "owner_address": "0x1111111111111111111111111111111111111111",
+            "registered_at_block": 36000000,
+            "revoked_at": null,
+            "owner_since": {
+              "observed_at": "2026-10-26T18:12:12Z",
+              "basis": "chain_event",
+              "block": 36500000,
+              "tx_hash": "0xc3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3"
+            }
+          }
+        ],
+        "anchors": [
+          {
+            "kind": "http_key",
+            "identifier": "ed25519:e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5",
+            "verified_at": "2026-10-16T18:12:12Z",
+            "status": "active"
+          }
+        ],
+        "anchor_note": "Key rotation and revocation are recorded once the key directory ships (F9); until then an anchor is listed as proven on its verification date.",
+        "as_of_block": 50276154
+      },
+      "bound": false,
+      "binding_status_url": null,
+      "operator_attested_by": null,
+      "liveness": null,
+      "slots": {
+        "bound": "true once a FlexHold binding for the owner key is present and not revoked (status list)",
+        "operator_attested_by": "an accepted attester (x401, EUDI wallet, KYC read-only) — never the operator's legal identity",
+        "liveness": "0–6 rungs, C2"
+      },
+      "history": [
+        {
+          "date": "2026-10-26",
+          "value": 712,
+          "confidence_bps": 7800
+        }
+      ]
+    },
+    "credentialStatus": {
+      "type": "FlexTrustLivePassport",
+      "refresh": "https://flextrust.io/agents/22286/passport.json"
+    },
+    "termsOfUse": {
+      "type": "FlexTrustTerms",
+      "version": "1.0",
+      "url": "https://flextrust.io/terms"
+    },
+    "verify": {
+      "commitments": "https://flextrust.io/commitments.json",
+      "keys": "https://flextrust.io/.well-known/flextrust",
+      "spec": "https://flextrust.io/spec/passport"
+    },
+    "statement": {
+      "status": "signed",
+      "message": {
+        "subject": "erc8004:8453:999999001",
+        "subjectId": 22286,
+        "tier": "full",
+        "documentDigest": "0x548e48abe884d856f878bfad20d8d6ddd01dd49c3c27b0721d1ef17c8995dc1e",
+        "score": 712,
+        "confidenceBps": 7800,
+        "riskDerived": 29,
+        "methodologyVersion": "v1",
+        "commitmentDay": "2026-10-26",
+        "commitmentRoot": "0x76d15ac5c145edb8f9736eea7a8ea57a72245209ff891caf9a96cb19d5170109",
+        "leafPosition": 10656,
+        "ownerAddress": "0x1111111111111111111111111111111111111111",
+        "asOfBlock": 50276154,
+        "issuedAt": 1793038332,
+        "validUntil": 1793124732,
+        "keyId": "indicative-test-key"
+      },
+      "signature": "0x75f0dd8c9477921223a60bdcd800887efc761f7a46bc7ba147ba03c300656340498a91903f3fae910b1d79241f27465c9971f7e8b53c368959d12255e74852a81b",
+      "key_id": "indicative-test-key",
+      "committed_score": {
+        "value": 712,
+        "computed_at": "2026-10-26T18:12:12Z"
+      },
+      "proof": {
+        "leaf": {
+          "agent_id": 22286,
+          "value": 712,
+          "computed_at": 1793038332,
+          "salt": "15ee9f1e6a25724adb1ff34c3ba7d05d"
+        },
+        "leaf_format": "sha256(agent_id|value|computed_at_unix|salt)",
+        "position": 10656,
+        "siblings": [
+          "77802746b2d007f3ff197df2c4cb2d244e9b5d24392cec76c75da6ef49d01d5b",
+          "4c901db192d9ba195c7468749f50adb08812a83060d46eaeb9dfdf5b768fffa9",
+          "d9f9a57557194ce2a0f22c5421840679c8135716354e8011b127a4968e92d58a",
+          "0da3a79841e70490ad7a1153460f1992d2a15ffed03146c955723dc4e20a63c4",
+          "dae4adc1322c79d074e1016962995a034d211cb04a9129405b9f5730bd71221b",
+          "f778006892a331dbd995fe95c5117eabc995a73dfdc41139899649ca4ddff5c6",
+          "838159eee9f0beb34773554acbe7f4a40a4be760ac019ab8560ed2d178d4434e",
+          "1054fac6cac6f96bda00a2c56a9a9c779eadf4fa080b118e1be5d46df1f826d6",
+          "84c9abc528e92608ae4299a3d9b7d44cf0d16ccf9c43387294b844de0971f66a",
+          "6d0b61848b4778e97fedb41dbd0da6883fb73535e104daaba2357936d522d85d",
+          "ce9a1513c90f63e77f0ecc9fc9f56b84c133b107cc7cf37bba99f082c08679ed",
+          "962ba0a4162cf6055cc8d634a3517bc8d76f4094a02d76599d6f67f81aeab2ba",
+          "290c3b5ea55b99d24f903cf178763e0f7d11769571643be85d0110612a519ff6",
+          "162aa1d7cc5df44a28ade9014042999b7fe5d6fb16a90ac455325f85f9120bd8"
+        ],
+        "pairing": "sha256(left + right), odd node pairs with itself",
+        "root": "76d15ac5c145edb8f9736eea7a8ea57a72245209ff891caf9a96cb19d5170109",
+        "committed_on": "2026-10-26"
+      },
+      "root_signature": {
+        "key_id": "indicative-test-key",
+        "signed_at": "2026-10-26T18:12:12Z",
+        "value": "0x877b154122427081c70b211eedd145192df3f86851f71effa62f84e64beac8084949ba14c12c96a1bc167afbcdcaf51fe082c406b1f2bfbf4d0190c1990142c11b",
+        "primary_type": "CommitmentRoot"
+      }
+    },
+    "proof": {
+      "type": "EthereumEip712Signature2021",
+      "created": "2026-10-26T18:12:12Z",
+      "proofPurpose": "assertionMethod",
+      "verificationMethod": "did:web:flextrust.io#indicative-test-key",
+      "proofValue": "0x75f0dd8c9477921223a60bdcd800887efc761f7a46bc7ba147ba03c300656340498a91903f3fae910b1d79241f27465c9971f7e8b53c368959d12255e74852a81b",
+      "eip712": {
+        "domain": {
+          "name": "FlexTrust",
+          "version": "1",
+          "chainId": 8453
+        },
+        "types": {
+          "EIP712Domain": [
+            {
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "name": "version",
+              "type": "string"
+            },
+            {
+              "name": "chainId",
+              "type": "uint256"
+            }
+          ],
+          "PassportStatement": [
+            {
+              "name": "subject",
+              "type": "string"
+            },
+            {
+              "name": "subjectId",
+              "type": "uint64"
+            },
+            {
+              "name": "tier",
+              "type": "string"
+            },
+            {
+              "name": "documentDigest",
+              "type": "bytes32"
+            },
+            {
+              "name": "score",
+              "type": "uint16"
+            },
+            {
+              "name": "confidenceBps",
+              "type": "uint16"
+            },
+            {
+              "name": "riskDerived",
+              "type": "uint8"
+            },
+            {
+              "name": "methodologyVersion",
+              "type": "string"
+            },
+            {
+              "name": "commitmentDay",
+              "type": "string"
+            },
+            {
+              "name": "commitmentRoot",
+              "type": "bytes32"
+            },
+            {
+              "name": "leafPosition",
+              "type": "uint32"
+            },
+            {
+              "name": "ownerAddress",
+              "type": "string"
+            },
+            {
+              "name": "asOfBlock",
+              "type": "uint64"
+            },
+            {
+              "name": "issuedAt",
+              "type": "uint64"
+            },
+            {
+              "name": "validUntil",
+              "type": "uint64"
+            },
+            {
+              "name": "keyId",
+              "type": "string"
+            }
+          ]
+        },
+        "primaryType": "PassportStatement",
+        "signedFields": [
+          "statement.message"
+        ]
+      }
+    }
+  },
+  "expected": {
+    "ok": false,
+    "reason": "digest_mismatch"
+  }
+}
