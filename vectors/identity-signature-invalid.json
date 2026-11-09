@@ -1,0 +1,24 @@
+{
+  "name": "identity-signature-invalid",
+  "description": "one bit of the signature flipped",
+  "spec": "docs/spec/collector-v1.md",
+  "source": "identity",
+  "note": "a jwt_vc_json owner-identity credential (W3C VC 2.0 as a compact JWS, EdDSA) by the test issuer I about owner O; verdict only — the subject's claims are never interpreted",
+  "now": "2026-10-27T12:00:00Z",
+  "jwk_directory": {
+    "did:key:z6MkrNRaonyWkTk1wD5qn7A6XGGYB6uLtxN7wejzgyCFkkXU#z6MkrNRaonyWkTk1wD5qn7A6XGGYB6uLtxN7wejzgyCFkkXU": {
+      "x": "sQ8fu_vimi1RZY8OTQXBqtoy2azxg8P8MgpPY_U7Hes",
+      "valid_from": "2026-10-27",
+      "retired_at": null,
+      "compromised_at": null
+    }
+  },
+  "status_list": "identity-status-list-valid",
+  "document": {
+    "jws": "eyJhbGciOiJFZERTQSIsInR5cCI6InZjK2p3dCIsImtpZCI6ImRpZDprZXk6ejZNa3JOUmFvbnlXa1RrMXdENXFuN0E2WEdHWUI2dUx0eE43d2Vqemd5Q0Zra1hVI3o2TWtyTlJhb255V2tUazF3RDVxbjdBNlhHR1lCNnVMdHhON3dlanpneUNGa2tYVSJ9.eyJAY29udGV4dCI6WyJodHRwczovL3d3dy53My5vcmcvbnMvY3JlZGVudGlhbHMvdjIiXSwidHlwZSI6WyJWZXJpZmlhYmxlQ3JlZGVudGlhbCIsIk93bmVySWRlbnRpdHkiXSwiaWQiOiJ1cm46dXVpZDowMDAwMDAwMC0wMDAwLTQwMDAtODAwMC02MDQ5NjE4OGVmNTgiLCJpc3N1ZXIiOiJkaWQ6a2V5Ono2TWtyTlJhb255V2tUazF3RDVxbjdBNlhHR1lCNnVMdHhON3dlanpneUNGa2tYVSIsInZhbGlkRnJvbSI6IjIwMjYtMTAtMjdUMTA6MDA6MDBaIiwidmFsaWRVbnRpbCI6IjIwMjYtMTEtMjdUMTA6MDA6MDBaIiwiY3JlZGVudGlhbFN1YmplY3QiOnsiaWQiOiJkaWQ6a2V5Ono2TWt0ODJqcmRFSzY3MUNMcWp6cUI0RlhiSjdYNnlTSkFWdFR5VEphdFhrb2JWNCIsInZlcmlmaWNhdGlvbl9sZXZlbCI6InRlc3QifSwiY3JlZGVudGlhbFN0YXR1cyI6eyJ0eXBlIjoiQml0c3RyaW5nU3RhdHVzTGlzdEVudHJ5Iiwic3RhdHVzUHVycG9zZSI6InJldm9jYXRpb24iLCJzdGF0dXNMaXN0SW5kZXgiOjUsInN0YXR1c0xpc3RDcmVkZW50aWFsIjoiaHR0cHM6Ly9zdGF0dXMuaWRlbnRpdHkuZXhhbXBsZS9saXN0cy8xLmp3cyJ9LCJpc3MiOiJkaWQ6a2V5Ono2TWtyTlJhb255V2tUazF3RDVxbjdBNlhHR1lCNnVMdHhON3dlanpneUNGa2tYVSIsInN1YiI6ImRpZDprZXk6ejZNa3Q4MmpyZEVLNjcxQ0xxanpxQjRGWGJKN1g2eVNKQVZ0VHlUSmF0WGtvYlY0IiwianRpIjoidXJuOnV1aWQ6MDAwMDAwMDAtMDAwMC00MDAwLTgwMDAtNjA0OTYxODhlZjU4IiwiaWF0IjoxNzkzMDk1MjAwLCJuYmYiOjE3OTMwOTUyMDAsImV4cCI6MTc5NTc3MzYwMH0.xwycAxdZQBJzhodM06zXeoC04I4J7aIKOVwXr4twJ6ZvF11cpD8XBajNTkMnTSxN8rLLjIbb2qZq5g6nyQR_CQ"
+  },
+  "expected": {
+    "ok": false,
+    "reason": "signature_invalid"
+  }
+}

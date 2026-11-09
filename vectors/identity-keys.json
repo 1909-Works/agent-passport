@@ -1,0 +1,20 @@
+{
+  "test_only": true,
+  "warning": "FlexHold's TEST identity issuer I (seed published here); never trust it for anything real. Real issuers are third parties — their JWK Set is the trust.",
+  "seed_rule": "seed = SHA-256(seed_string) → Ed25519 private key",
+  "seed_string": "flexhold-test-vector-identity-issuer-key-I",
+  "did": "did:key:z6MkrNRaonyWkTk1wD5qn7A6XGGYB6uLtxN7wejzgyCFkkXU",
+  "kid": "did:key:z6MkrNRaonyWkTk1wD5qn7A6XGGYB6uLtxN7wejzgyCFkkXU#z6MkrNRaonyWkTk1wD5qn7A6XGGYB6uLtxN7wejzgyCFkkXU",
+  "shape": "JWK Set with validity — the shape FlexHold reads for an issuer's signing keys (kid, kty OKP, crv Ed25519, x, valid_from, retired_at, compromised_at)",
+  "keys": [
+    {
+      "kid": "did:key:z6MkrNRaonyWkTk1wD5qn7A6XGGYB6uLtxN7wejzgyCFkkXU#z6MkrNRaonyWkTk1wD5qn7A6XGGYB6uLtxN7wejzgyCFkkXU",
+      "kty": "OKP",
+      "crv": "Ed25519",
+      "x": "sQ8fu_vimi1RZY8OTQXBqtoy2azxg8P8MgpPY_U7Hes",
+      "valid_from": "2026-10-27",
+      "retired_at": null,
+      "compromised_at": null
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "name": "identity-malformed-no-subject-id",
+  "description": "credentialSubject without a DID id (sub cannot be matched)",
+  "spec": "docs/spec/collector-v1.md",
+  "source": "identity",
+  "note": "a jwt_vc_json owner-identity credential (W3C VC 2.0 as a compact JWS, EdDSA) by the test issuer I about owner O; verdict only — the subject's claims are never interpreted",
+  "now": "2026-10-27T12:00:00Z",
+  "jwk_directory": {
+    "did:key:z6MkrNRaonyWkTk1wD5qn7A6XGGYB6uLtxN7wejzgyCFkkXU#z6MkrNRaonyWkTk1wD5qn7A6XGGYB6uLtxN7wejzgyCFkkXU": {
+      "x": "sQ8fu_vimi1RZY8OTQXBqtoy2azxg8P8MgpPY_U7Hes",
+      "valid_from": "2026-10-27",
+      "retired_at": null,
+      "compromised_at": null
+    }
+  },
+  "status_list": "identity-status-list-valid",
+  "document": {
+    "jws": "eyJhbGciOiJFZERTQSIsInR5cCI6InZjK2p3dCIsImtpZCI6ImRpZDprZXk6ejZNa3JOUmFvbnlXa1RrMXdENXFuN0E2WEdHWUI2dUx0eE43d2Vqemd5Q0Zra1hVI3o2TWtyTlJhb255V2tUazF3RDVxbjdBNlhHR1lCNnVMdHhON3dlanpneUNGa2tYVSJ9.eyJAY29udGV4dCI6WyJodHRwczovL3d3dy53My5vcmcvbnMvY3JlZGVudGlhbHMvdjIiXSwidHlwZSI6WyJWZXJpZmlhYmxlQ3JlZGVudGlhbCIsIk93bmVySWRlbnRpdHkiXSwiaWQiOiJ1cm46dXVpZDowMDAwMDAwMC0wMDAwLTQwMDAtODAwMC02MDQ5NjE4OGVmNTgiLCJpc3N1ZXIiOiJkaWQ6a2V5Ono2TWtyTlJhb255V2tUazF3RDVxbjdBNlhHR1lCNnVMdHhON3dlanpneUNGa2tYVSIsInZhbGlkRnJvbSI6IjIwMjYtMTAtMjdUMTA6MDA6MDBaIiwidmFsaWRVbnRpbCI6IjIwMjYtMTEtMjdUMTA6MDA6MDBaIiwiY3JlZGVudGlhbFN1YmplY3QiOnsidmVyaWZpY2F0aW9uX2xldmVsIjoidGVzdCJ9LCJjcmVkZW50aWFsU3RhdHVzIjp7InR5cGUiOiJCaXRzdHJpbmdTdGF0dXNMaXN0RW50cnkiLCJzdGF0dXNQdXJwb3NlIjoicmV2b2NhdGlvbiIsInN0YXR1c0xpc3RJbmRleCI6NSwic3RhdHVzTGlzdENyZWRlbnRpYWwiOiJodHRwczovL3N0YXR1cy5pZGVudGl0eS5leGFtcGxlL2xpc3RzLzEuandzIn0sImlzcyI6ImRpZDprZXk6ejZNa3JOUmFvbnlXa1RrMXdENXFuN0E2WEdHWUI2dUx0eE43d2Vqemd5Q0Zra1hVIiwic3ViIjoiZGlkOmtleTp6Nk1rdDgyanJkRUs2NzFDTHFqenFCNEZYYko3WDZ5U0pBVnRUeVRKYXRYa29iVjQiLCJqdGkiOiJ1cm46dXVpZDowMDAwMDAwMC0wMDAwLTQwMDAtODAwMC02MDQ5NjE4OGVmNTgiLCJpYXQiOjE3OTMwOTUyMDAsIm5iZiI6MTc5MzA5NTIwMCwiZXhwIjoxNzk1NzczNjAwfQ.blnFIIBPoAsUmZxkYrwybz797smRcZ8WzdB92hmSi3PsIg4XrSGyFHiLF8TdEaenyAoUUh_PWx3wPbmROmfVDA"
+  },
+  "expected": {
+    "ok": false,
+    "reason": "malformed"
+  }
+}

@@ -1,4 +1,4 @@
-# Agent Passport test vectors — binding v1.1, envelope v1.0, mandate and record collector (2026-11-07)
+# Agent Passport test vectors — binding v1.1, envelope v1.0, mandate, record and identity collector (2026-11-09)
 
 Published subset of the holder implementation's vector set: the 21 binding cases, the three status lists, the registration snapshot, the test keys, the example envelope and — since 2026-10-29, with the authority's permission — the authority's indicative mandate block and the holder's 13 mandate-collector vectors over it, and — since 2026-11-07, with the reputation issuer's permission — the reputation issuer's indicative record block and the holder's 13 record-collector vectors over it. With that, every block of the example envelope has its issuer's fixture and the holder's verdict vectors published here.
 
@@ -113,6 +113,47 @@ Before the checks: a document that does not parse as `passport-v1` is `malformed
 | record-public-tier-unsigned | unsigned |
 
 To verify in any language: parse `block`, run the six checks with the two sources given, compare the reason.
+
+## Identity vectors (2026-11-09) — the holder's collector verdict on an owner-identity credential (`jwt_vc_json`)
+
+The holder collects **one owner-identity credential** that a third-party issuer made about the owner O, and verifies it issuer-neutrally;
+the subject's claims are never interpreted — the verdict is about the credential, not about the person. `identity-keys.json` is the
+**test issuer I** (`did:key`, seed published, `test_only: true`) as a JWK Set with validity (`kid, kty OKP, crv Ed25519, x, valid_from,
+retired_at, compromised_at`) — the shape a holder reads for any issuer's signing keys; real issuers are third parties and their own JWK Set
+is the trust. The credential is a W3C VC 2.0 credential as a compact JWS (EdDSA, `typ vc+jwt`), format `jwt_vc_json` — one of the formats a
+proof-requirement protocol such as x401 can ask for (x401 itself defines no credential format). Owner O and the stray key X are the
+binding test keys from `keys.json`.
+
+Each `identity-*.json` holds `document` (`{jws}`), `now` (the verifier's clock), `jwk_directory` (`kid → {x, valid_from, retired_at,
+compromised_at}`), optional `expected_owner` (the binding's owner key O), optional `status_list` (the name of an
+`identity-status-list-*.json` file — the **issuer's own** Bitstring Status List, signed with the issuer's key and verified with the same JWK
+Set, never the binding's list) and `expected` (`ok`, `reason`). Five checks, in order — the first failing check is the reason:
+
+| # | Check | Reason |
+|---|---|---|
+| 1 | key: `kid` is in the JWK Set, valid at issuance, not retired, not compromised; the Ed25519 signature verifies with that key | `key_unknown`, `key_compromised`, `signature_invalid` |
+| 2 | issuer: `iss == issuer.id ==` the DID part of `kid` | `issuer_mismatch` |
+| 3 | window: `nbf ≤ now < exp` | `not_yet_valid`, `expired` |
+| 4 | subject: when the caller names the binding's owner key O, `credentialSubject.id` (= `sub`) `== O` | `owner_mismatch` |
+| 5 | status, only when the credential carries `credentialStatus`: the list resolves, is signed by the issuer's key from the same JWK Set and is within its validity; the credential's index is not set | `status_unavailable`, `status_invalid`, `revoked` |
+
+A document that is not a compact JWS, or whose `credentialSubject` has no DID `id`, reads `malformed` before check 1. A credential without
+`credentialStatus` passes check 5 with nothing to check (`identity-no-status`).
+
+| Vector | Reason |
+|---|---|
+| identity-valid, identity-valid-owner-match (`expected_owner` = the subject), identity-no-status (no `credentialStatus`) | ok |
+| identity-key-unknown / identity-key-compromised / identity-signature-invalid | key_unknown / key_compromised / signature_invalid |
+| identity-issuer-mismatch | issuer_mismatch |
+| identity-not-yet-valid / identity-expired | not_yet_valid / expired |
+| identity-owner-mismatch (`expected_owner` ≠ the subject) | owner_mismatch |
+| identity-revoked (the issuer's list has index 5 set) | revoked |
+| identity-status-unavailable (the list cannot be resolved) / identity-status-wrong-issuer (the list is signed by X, not I) | status_unavailable / status_invalid |
+| identity-malformed-no-subject-id | malformed |
+
+Status lists: `identity-status-list-valid`, `identity-status-list-revoked` (index 5), `identity-status-list-wrong-issuer` (signed by X).
+To verify in any language: split the JWS, look the `kid` up in `jwk_directory`, Ed25519-verify, run the five checks (the status list the
+same way), compare the reason.
 
 ## Example envelope (H3, 2026-10-28) — `envelope-example-v1.0.json`
 

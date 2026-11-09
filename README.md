@@ -42,7 +42,8 @@ this repository defines the envelope and the binding.
 revoked, wrong owner, mandate mismatch, …), three status lists, a registration snapshot, one consistent example envelope, and
 the authority's indicative mandate block with the holder's 13 collector vectors over it (valid, key unknown, expired, claim
 overreach, …), and the reputation issuer's indicative record block with the holder's 13 collector vectors over it (valid, digest
-mismatch, merkle invalid, root mismatch, …). Every key in the vectors is **test-only**, published with its seed, and marked as such;
+mismatch, merkle invalid, root mismatch, …), and — since 2026-11-09 — the holder's 14 identity-collector vectors over an owner-identity
+credential in `jwt_vc_json` by a test issuer (valid, owner mismatch, revoked, …) with that issuer's three status lists. Every key in the vectors is **test-only**, published with its seed, and marked as such;
 each file names the sources to supply and the expected verdict. See [`vectors/README.md`](vectors/README.md).
 
 ## Who maintains this
@@ -61,3 +62,4 @@ The indicative mandate block in `vectors/fixture-flexyield-mandate-indicative-v0
 **FlexYield's**, published here with FlexYield's permission under the same licence — attribution: FlexYield.
 The indicative record block in `vectors/fixture-flextrust-passport-indicative-v0.1.json` (and the block the record vectors carry) is
 **FlexTrust's**, published here with FlexTrust's permission under the same licence — attribution: FlexTrust.
+The identity vectors and their test issuer are the holder's own (attribution: FlexHold).
