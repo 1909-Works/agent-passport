@@ -28,7 +28,7 @@ host moves, the identifiers stay.
 
 | Document | Version | Status |
 |---|---|---|
-| [`spec/envelope-v1.0.md`](spec/envelope-v1.0.md) — the Agent Passport Envelope | v1.0 | **release candidate**: content agreed by its three authoring projects on 2026-10-28; becomes final, with no change to the text or the example, once two independent door implementations have read `vectors/envelope-example-v1.0.json` |
+| [`spec/envelope-v1.0.md`](spec/envelope-v1.0.md) — the Agent Passport Envelope | v1.0 | **final** since 2026-11-09: content agreed by its three authoring projects on 2026-10-28 and published as release candidate the same day; two independent door implementations have since read `vectors/envelope-example-v1.0.json` (a reputation door on 2026-10-29, an authority verifier on 2026-11-07) with no change to the text or the example |
 | [`spec/binding-v1.1.md`](spec/binding-v1.1.md) — the binding block | v1.1 | stable; v1.1 is additive over v1 (role type `AgentBinding`, rule 5 issuer clause) |
 
 The envelope composes existing standards: W3C Verifiable Credentials 2.0 (presentation, `EnvelopedVerifiableCredential`),

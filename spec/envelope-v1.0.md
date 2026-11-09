@@ -1,9 +1,9 @@
-# Agent Passport Envelope — spec v1.0 (RELEASE CANDIDATE — content agreed by FlexYield, FlexTrust and FlexHold; V2-PLAN #33, F8, DISTRIBUTION 7b)
+# Agent Passport Envelope — spec v1.0 (FINAL — content agreed by FlexYield, FlexTrust and FlexHold; V2-PLAN #33, F8, DISTRIBUTION 7b)
 
-**Status:** v1.0 RELEASE CANDIDATE, 2026-10-28 — the v0.3 content (agreement candidate 12:22 CET) confirmed by FlexHold (11:44 UTC), FlexTrust
+**Status:** **v1.0 FINAL, 2026-11-09** — release candidate since 2026-10-28; FINAL after two independent reads of `envelope-example-v1.0.json`: FlexTrust's gate doors (C3.2 on prod, 2026-10-29 12:02 UTC — envelope ok · binding ok · record ok, advisory `bound_stale`) and FlexYield's envelope verifier (2026-11-07 — 20 PASS · 3 SKIP · 0 FAIL → ok). Label only: the normative text and the example are unchanged. Origin: the v0.3 content (agreement candidate 12:22 CET) confirmed by FlexHold (11:44 UTC), FlexTrust
 (14:10 UTC) and FlexYield (15:35 CET, Christian's read: agreed). **v1.0 = v0.3 content + the two w3id.org context identifiers (D37) + FlexTrust's
-§3 #5 wording correction; no other change.** It becomes **FINAL** — with no byte change to this text or to the example — once two independent
-readers have run `envelope-example-v1.0.json`: FlexTrust's doors (C3.1) and FlexYield's door verifier. Written by the FlexYield session (DISTRIBUTION
+§3 #5 wording correction; no other change.** It became **FINAL** on 2026-11-09 after those two reads, as announced — no byte change to the
+normative text or to the example. Written by the FlexYield session (DISTRIBUTION
 v1.2 row 7b); **issuer-neutral by agreement: no FlexYield-only field.** Maintained by FlexHold from v1.0 on (HOLDER §5 "Shared"); changes over the
 three-way bridge in numbered rounds; siblings mirror the published version. **Published:** `https://github.com/1909-Works/agent-passport`
 (spec, JSON-LD contexts, test vectors) under **CC BY 4.0**; identifiers `https://w3id.org/agent-passport/envelope/v1` (this context) and
@@ -119,3 +119,4 @@ record is v1.x (HOLDER §6). No block in the envelope carries a legal name; the 
 | 2 | FlexHold | 2026-10-28 11:44 UTC | v0.3 confirmed as applied; D37 taken as the E6 answer |
 | 2 | FlexYield | 2026-10-28 15:35 CET | Christian's read: agreed; FlexYield's side final |
 | — | publication | 2026-10-28 | **v1.0 RELEASE CANDIDATE** = v0.3 content + the two w3id.org identifiers + the §3 #5 correction; `version` string `envelope-v1.0`; FlexHold publishes (`1909-Works/agent-passport`, CC BY 4.0) and maintains; siblings mirror; passport-v1.1 (`AgentRecord`) / binding v1.1 (`AgentBinding`, already shipped) type additions same step. **FINAL** once FlexTrust C3.1 and FlexYield's verifier have each read `envelope-example-v1.0.json` — label only, no byte change |
+| — | FINAL | 2026-11-09 | **v1.0 FINAL** — the two independent reads are in: FlexTrust C3.2 on prod (2026-10-29 12:02 UTC: envelope ok · binding ok · record ok, advisory `bound_stale`; 21/21 binding verdicts and `envelope_hash` reproduce in their CI) and FlexYield's verifier `bin/verify-envelope` (2026-11-07: 20 PASS · 3 SKIP · 0 FAIL → ok; the SKIPs are verifier edges by design — record verified by FlexTrust's passport-v1 rule, `bound_stale` not computed without the record read, `cross.replay` skipped because a standing presentation carries no `aud`). Label flipped on Christian's go; normative text and example unchanged |
